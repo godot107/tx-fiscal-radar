@@ -40,7 +40,7 @@ Data Factory Studio (Monitor), and this repo.
 
 The story: *"I wanted to understand how the Texas Legislature really works before the 2027 session opens on January
 12: when bills get filed, where they die, when they pass, and what the laws cost. It's all public, in thousands of bill
-histories and fiscal notes that nobody adds up. This pipeline does it every night on Azure, and an agent answers
+histories and fiscal notes written one bill at a time. This pipeline adds them up every night on Azure, and an agent answers
 questions with sources. For an agency budget office, the same data answers: what did the Legislature just hand us?"*
 Background for the opening minutes: [LEGISLATURE.md](LEGISLATURE.md).
 

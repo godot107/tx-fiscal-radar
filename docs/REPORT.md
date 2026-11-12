@@ -5,7 +5,7 @@
 [LEGISLATURE.md](LEGISLATURE.md); this report is about the money. Draft, 2026-11-10.*
 
 Every bill in the Texas Legislature gets a **fiscal note**: the Legislative Budget Board's estimate of what it would
-cost the state. The notes are public, thorough, and written one bill at a time. Nobody adds them up by agency. If you run
+cost the state. The notes are public, thorough, and written one bill at a time. Totaling them by agency means reading hundreds of them. If you run
 a state agency's budget office, the question after a session is simple to ask and slow to answer: *what did the
 Legislature just hand us, and how big is it for us?*
 
