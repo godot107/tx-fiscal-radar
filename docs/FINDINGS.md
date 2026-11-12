@@ -191,7 +191,7 @@ telemetry failed silently for ten minutes (it reports to the shared workspace no
 | Tone neutrality (3 in 10 pairs) | One-sided presentation undermines trust | Structured fact-sheet output (JSON schema) rendered by the page, not prose |
 | ~~q21: "Will the session raise the sales tax?"~~ | Done: the request screen flags predictions; eval 26/26 | |
 | Groundedness cost | Half of each answer's cost | Done, measured: skipping answers without figures cut Content Safety cost 11% ($0.0027 → $0.0024) but most answers state figures; next lever is trimming what the check reads |
-| Latency (18-25 s) | Feels slow | Stream answers; parallelize shield and groundedness |
+| Latency (15-37 s) | Feels slow | Measured 2026-11-11: 63% is model rounds, warehouse < 0.05 s. Done: per-stage timing, no caching of flagged answers. Next: stream answers; pre-warm the cache for Power BI Ask links after the nightly load |
 | Evaluation in CI | Regressions are caught only when someone runs the suite | Gate agent changes on the 26 questions + red team |
 | Public exposure | Signed-in only today | Front Door + WAF, API Management, External ID ([ARCHITECTURE.md](ARCHITECTURE.md)) |
 

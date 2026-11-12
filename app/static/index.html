@@ -110,7 +110,20 @@ function costHtml(c) {
   if (!c || !c.usd) return "";
   const rows = Object.entries(c.usd).filter(([k]) => k !== "total")
     .map(([k, v]) => `<li>${esc(k.replace(/_/g, " "))}: $${esc(Number(v).toFixed(5))}</li>`).join("");
+  if (!rows) return `<p>Cost of this answer: $0 (${esc(c.note || "no model calls")}).</p>`;   // cache hits
   return `<p>Cost of this answer (list price, checked ${esc(c.prices_checked || "")}):</p><ul>${rows}</ul>`;
+}
+
+// Where the seconds went (server-side stage timing; cache hits have none)
+const STAGES = {screen: "request screen", setup: "start the run", model: "model (thinking between tool calls)",
+                sql: "warehouse queries", search: "fiscal-note search + document shield", finish: "read the answer",
+                groundedness: "groundedness check"};
+function timingHtml(t) {
+  if (!t) return "";
+  const total = Object.keys(STAGES).reduce((s, k) => s + (t[k] || 0), 0) || 1;
+  const rows = Object.entries(STAGES).filter(([k]) => (t[k] || 0) >= 0.05)
+    .map(([k, label]) => `<li>${esc(label)}: ${esc((t[k]).toFixed(1))} s (${Math.round(100 * t[k] / total)}%)</li>`).join("");
+  return `<p>Where the time went (${esc(t.model_rounds ?? "?")} model rounds):</p><ul>${rows}</ul>`;
 }
 
 // Charts from the agent's code interpreter: base64 PNG only, rendered as <img> (CSP allows data: images)
@@ -167,6 +180,7 @@ function metaHtml(r) {
     <details><summary>How this was answered · ${esc(r.seconds)} s · $${esc((((r.cost || {}).usd || {}).total ?? 0).toFixed(4))}</summary>
       <p>Tool calls:</p><ul>${tools || "<li>none</li>"}</ul>
       ${mem ? `<p>What it remembered about you:</p><ul>${mem}</ul>` : ""}
+      ${timingHtml(r.timing)}
       ${costHtml(r.cost)}
       ${unsup ? `<p>Statements the groundedness check could not find in the sources:</p><ul>${unsup}</ul>` : ""}
     </details></div>`;

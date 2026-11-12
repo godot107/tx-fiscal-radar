@@ -416,16 +416,27 @@ def _ask_once(question: str, conn=None, verbose: bool = True, user_scope: str | 
     from txfr.common import connect_sql
     from txfr import finops
     meter = finops.start()   # fresh per question (worker threads and eval loops are reused)
+    # Where the time goes, per stage (seconds). "model" is time waiting on the Agent Service between tool calls
+    # (model rounds + polling); sql / search are our own tools; the rest are guardrails and bookkeeping.
+    timing = {k: 0.0 for k in ("screen", "setup", "model", "sql", "search", "finish", "groundedness")}
+    lap = [time.perf_counter()]
+
+    def tick(stage: str) -> None:
+        now = time.perf_counter()
+        timing[stage] = round(timing[stage] + now - lap[0], 3)
+        lap[0] = now
     guarded = os.environ.get("TXFR_GUARDRAILS", "1") == "1"
     screen = None
     if guarded:   # Phase B2b: hard stops for high-severity requests; neutral restatement for one-sided ones
         from txfr.guardrails import screen_request
         screen = screen_request(question)
+        tick("screen")
         if screen.get("refusal"):
             return {"question": question, "thread_id": None, "run_id": None, "status": "refused_by_policy",
                     "answer": screen["refusal"], "tool_calls": [], "guard": {"app_layer": True, "screen": screen},
                     "memories_used": [], "images": [], "error": None,
-                    "tokens": {"prompt": screen.get("tokens"), "completion": 0}, "cost": meter.report()}
+                    "tokens": {"prompt": screen.get("tokens"), "completion": 0}, "cost": meter.report(),
+                    "timing": timing}
     cli = agents_client(endpoint)
     conn = conn or connect_sql()
     meta = {"app": "fiscal-note-desk", "kept_until": time.strftime("%Y-%m-%d", time.gmtime(time.time() + keep_days * 86400))}
@@ -455,8 +466,10 @@ def _ask_once(question: str, conn=None, verbose: bool = True, user_scope: str | 
     run = cli.runs.create(thread_id=thread.id, agent_id=agent_id or os.environ["AGENT_ID"],
                           max_completion_tokens=int(os.environ.get("TXFR_MAX_COMPLETION", "2000")))
     calls, tool_texts, guard = [], [], {"app_layer": guarded, "docs_removed": 0, "screen": screen}
+    tick("setup")   # thread + message + run created (and memory recall, when on)
     while run.status in (RunStatus.QUEUED, RunStatus.IN_PROGRESS, RunStatus.REQUIRES_ACTION):
         if run.status == RunStatus.REQUIRES_ACTION:
+            tick("model")
             outs = []
             for tc in run.required_action.submit_tool_outputs.tool_calls:
                 args = json.loads(tc.function.arguments or "{}")
@@ -482,12 +495,14 @@ def _ask_once(question: str, conn=None, verbose: bool = True, user_scope: str | 
                     out = json.dumps({"error": f"{type(e).__name__}: {str(e)[:300]}"})
                 if guarded and name == "search_session":   # third-party text: screen for planted instructions
                     out = _shield_search(question, out, guard)
+                tick("sql" if name == "get_metrics" else "search")
                 tool_texts.append(_compact(out))
                 outs.append(ToolOutput(tool_call_id=tc.id, output=out))
             run = cli.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=outs)
         else:
             time.sleep(1.5)
             run = cli.runs.get(thread_id=thread.id, run_id=run.id)
+    tick("model")
     steps = list(cli.run_steps.list(thread_id=thread.id, run_id=run.id))
     for s in steps:
         for tc in getattr(s.step_details, "tool_calls", None) or []:
@@ -505,6 +520,7 @@ def _ask_once(question: str, conn=None, verbose: bool = True, user_scope: str | 
             images.append(base64.b64encode(data).decode())
     usage = getattr(run, "usage", None)
     meter.add(agent_prompt=getattr(usage, "prompt_tokens", 0), agent_completion=getattr(usage, "completion_tokens", 0))
+    tick("finish")   # read run steps, the answer text, any charts
     server_search = any(c.get("tool") == "azure_ai_search" for c in calls)
     if guarded and server_search:
         guard["groundedness"] = {"checked": False, "reason": "server-side search results aren't visible to the runner"}
@@ -517,6 +533,7 @@ def _ask_once(question: str, conn=None, verbose: bool = True, user_scope: str | 
             guard["groundedness"] = groundedness(question, answer, tool_texts)
         except Exception as e:  # noqa: BLE001 - a guardrail outage flags, never breaks the answer
             guard["groundedness"] = {"checked": False, "error": str(e)[:200]}
+    tick("groundedness")
     if not keep_thread:   # privacy by default (web app): the question and answer aren't kept after answering
         try:
             cli.threads.delete(thread.id)
@@ -532,7 +549,7 @@ def _ask_once(question: str, conn=None, verbose: bool = True, user_scope: str | 
             "tool_calls": calls, "guard": guard, "memories_used": memories, "images": images,
             "error": str(run.last_error) if run.last_error else None,
             "tokens": {"prompt": getattr(usage, "prompt_tokens", None), "completion": getattr(usage, "completion_tokens", None)},
-            "cost": meter.report()}
+            "cost": meter.report(), "timing": {**timing, "model_rounds": len(calls) + 1}}
 
 
 # ------------------------------------------------------------------ evaluation: fixed questions, answers from SQL

@@ -70,7 +70,13 @@ What this shows:
   time, which is what the cache discounts.
 - **A cached answer costs $0.** Identical questions (normalized text) within a day are served from the answer cache in
   ~0.1 s; the cache key includes the last warehouse load time, so tonight's load invalidates it. Personalized (memory)
-  answers are never cached.
+  answers and A/B pairs are never cached. Since 2026-11-11, answers the groundedness check flags above 25%
+  (`TXFR_CACHE_MAX_UNGROUNDED`, `src/txfr/cache_policy.py`) aren't cached either: a cache repeats a weak answer all day.
+  Measured: school-vouchers question 23.13 s / $0.0129 fresh, 0.06 s / $0 repeated.
+- **Where the time goes** (`timing` in every answer and `t_*` fields in COST_EVENT logs; 2026-11-11, vouchers question,
+  23 s): model rounds 14.1 s (63%), fiscal-note search + document shield 4.2 s (19%), request screen 1.5 s, run start
+  1.3 s, reading the answer 1.0 s, groundedness 0.4 s, **warehouse queries < 0.05 s**. Latency scales with tool calls
+  (~15 s for one, 30-37 s for three), so caching and streaming help; a faster database wouldn't.
 
 ### Showback queries
 

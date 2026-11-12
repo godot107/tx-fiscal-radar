@@ -31,6 +31,7 @@ SBS_SHARE = float(os.environ.get("TXFR_SBS_SHARE", "0"))   # A/B: share of quest
 VARIANTS = {"client_hybrid": "AGENT_ID", "foundry_knowledge": "AGENT_ID_KNOWLEDGE"}   # name → app setting
 _spend_lock = threading.Lock()
 CACHE_ON = os.environ.get("TXFR_CACHE", "1") == "1"
+from txfr.cache_policy import cacheable  # noqa: E402 - which answers may be cached (tested in tests/)
 LOG_SALT = os.environ.get("TXFR_LOG_SALT", "")
 
 
@@ -160,7 +161,7 @@ def _cache_get(key: str | None) -> dict | None:
 
 
 def _cache_put(key: str | None, body: dict) -> None:
-    if CACHE_ON and key and body.get("status") in ("RunStatus.COMPLETED", "refused_by_policy") and not body.get("error"):
+    if CACHE_ON and key and cacheable(body):
         try:
             _blob(key).upload_blob(json.dumps(body, default=str), overwrite=True)
         except Exception:  # noqa: BLE001
@@ -179,7 +180,8 @@ def _record_cost(r: dict, uid: str | None, session: str | None, seconds: float, 
     logging.warning("COST_EVENT %s", json.dumps({
         "user": pid(uid), "session": session, "route": route, "seconds": round(seconds, 2), "status": r.get("status"),
         **{f"usd_{k}": v for k, v in cost["usd"].items()},
-        "agent_prompt": cost["usage"].get("agent_prompt"), "cs_records": cost["usage"].get("content_safety_records")}))
+        "agent_prompt": cost["usage"].get("agent_prompt"), "cs_records": cost["usage"].get("content_safety_records"),
+        **{f"t_{k}": v for k, v in (r.get("timing") or {}).items()}}))
     return cost
 
 
@@ -282,8 +284,8 @@ def ask(req: func.HttpRequest) -> func.HttpResponse:
             "tool_calls": r["tool_calls"], "guard": r.get("guard"), "memories_used": r.get("memories_used", []),
             "tokens": r.get("tokens"), "seconds": round(time.time() - t0, 2), "cost": cost,
             "kept": bool(keep), "answer_ref": r.get("thread_id") if keep else None,
-            "images": r.get("images", [])[:3]}
-    _cache_put(ckey, {k: v for k, v in body.items() if k not in ("cost", "seconds")})
+            "images": r.get("images", [])[:3], "timing": r.get("timing")}
+    _cache_put(ckey, {k: v for k, v in body.items() if k not in ("cost", "seconds", "timing")})
     code = 429 if r.get("error") and "rate_limit" in str(r.get("error")).lower() else 200
     return func.HttpResponse(json.dumps(body, default=str), status_code=code, mimetype="application/json")
 
