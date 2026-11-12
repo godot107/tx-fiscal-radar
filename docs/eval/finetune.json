@@ -1,0 +1,851 @@
+{
+  "summary": {
+    "holdout_bills": 59,
+    "prompted": {
+      "bills": 59,
+      "rows": 367,
+      "verified_rows": 176,
+      "verified_rate": 0.48,
+      "bills_reconciling": 19
+    },
+    "finetuned": {
+      "bills": 59,
+      "rows": 220,
+      "verified_rows": 149,
+      "verified_rate": 0.677,
+      "bills_reconciling": 13
+    },
+    "finetuned_inference_tokens": {
+      "prompt": 79888,
+      "completion": 27156
+    }
+  },
+  "bills": [
+    {
+      "session": "892",
+      "bill": "HB1",
+      "prompted": {
+        "rows": 10,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "892",
+      "bill": "HB16",
+      "prompted": {
+        "rows": 10,
+        "verified": 3,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 10,
+        "verified": 6,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "892",
+      "bill": "HB7",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "892",
+      "bill": "HB8",
+      "prompted": {
+        "rows": 18,
+        "verified": 12,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 18,
+        "verified": 17,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "892",
+      "bill": "SB11",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB1089",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB142",
+      "prompted": {
+        "rows": 20,
+        "verified": 19,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 8,
+        "verified": 7,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB1443",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB149",
+      "prompted": {
+        "rows": 20,
+        "verified": 20,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 18,
+        "verified": 18,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB1586",
+      "prompted": {
+        "rows": 5,
+        "verified": 5,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 5,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB1639",
+      "prompted": {
+        "rows": 2,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 2,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB2",
+      "prompted": {
+        "rows": 93,
+        "verified": 47,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 14,
+        "verified": 13,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB2217",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB229",
+      "prompted": {
+        "rows": 2,
+        "verified": 2,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 2,
+        "verified": 2,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB2563",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB3041",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB3560",
+      "prompted": {
+        "rows": 4,
+        "verified": 2,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 1,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB3689",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB3801",
+      "prompted": {
+        "rows": 2,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 2,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB3866",
+      "prompted": {
+        "rows": 7,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 6,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB40",
+      "prompted": {
+        "rows": 4,
+        "verified": 4,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 7,
+        "verified": 4,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB4144",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB43",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB4486",
+      "prompted": {
+        "rows": 4,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 1,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB4751",
+      "prompted": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 2,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB4795",
+      "prompted": {
+        "rows": 1,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB500",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 1,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB5246",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "HB783",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1012",
+      "prompted": {
+        "rows": 1,
+        "verified": 1,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 5,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1018",
+      "prompted": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB11",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB12",
+      "prompted": {
+        "rows": 3,
+        "verified": 3,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 2,
+        "verified": 2,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1281",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1333",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1398",
+      "prompted": {
+        "rows": 10,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 2,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1506",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1723",
+      "prompted": {
+        "rows": 8,
+        "verified": 8,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 8,
+        "verified": 8,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1758",
+      "prompted": {
+        "rows": 1,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB1814",
+      "prompted": {
+        "rows": 5,
+        "verified": 5,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 6,
+        "verified": 6,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB2001",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB21",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB22",
+      "prompted": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 3,
+        "verified": 3,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB23",
+      "prompted": {
+        "rows": 10,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 4,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB2332",
+      "prompted": {
+        "rows": 8,
+        "verified": 4,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 8,
+        "verified": 4,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB243",
+      "prompted": {
+        "rows": 21,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB2543",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB34",
+      "prompted": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 10,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB37",
+      "prompted": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB379",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB4",
+      "prompted": {
+        "rows": 12,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 7,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB457",
+      "prompted": {
+        "rows": 3,
+        "verified": 3,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 1,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB502",
+      "prompted": {
+        "rows": 2,
+        "verified": 2,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 1,
+        "verified": 1,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB503",
+      "prompted": {
+        "rows": 5,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 5,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB519",
+      "prompted": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 0,
+        "verified": 0,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB568",
+      "prompted": {
+        "rows": 6,
+        "verified": 6,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 4,
+        "verified": 4,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB75",
+      "prompted": {
+        "rows": 15,
+        "verified": 10,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 10,
+        "verified": 10,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB771",
+      "prompted": {
+        "rows": 20,
+        "verified": 20,
+        "reconciles": false
+      },
+      "finetuned": {
+        "rows": 20,
+        "verified": 20,
+        "reconciles": false
+      }
+    },
+    {
+      "session": "89R",
+      "bill": "SB869",
+      "prompted": {
+        "rows": 10,
+        "verified": 0,
+        "reconciles": true
+      },
+      "finetuned": {
+        "rows": 5,
+        "verified": 5,
+        "reconciles": false
+      }
+    }
+  ]
+}

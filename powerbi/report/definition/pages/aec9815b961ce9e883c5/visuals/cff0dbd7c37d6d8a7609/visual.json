@@ -1,0 +1,199 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cff0dbd7c37d6d8a7609",
+  "position": {
+    "x": 20,
+    "y": 185,
+    "z": 0,
+    "width": 1240,
+    "height": 520,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "bill"
+                }
+              },
+              "queryRef": "watchlist.bill",
+              "nativeQueryRef": "bill",
+              "displayName": "Bill"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "caption"
+                }
+              },
+              "queryRef": "watchlist.caption",
+              "nativeQueryRef": "caption",
+              "displayName": "Caption"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "filed_date"
+                }
+              },
+              "queryRef": "watchlist.filed_date",
+              "nativeQueryRef": "filed_date",
+              "displayName": "Filed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "watchlist.status",
+              "nativeQueryRef": "status",
+              "displayName": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "agency_subject"
+                }
+              },
+              "queryRef": "watchlist.agency_subject",
+              "nativeQueryRef": "agency_subject",
+              "displayName": "Agency subject"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "hearing_scheduled"
+                }
+              },
+              "queryRef": "watchlist.hearing_scheduled",
+              "nativeQueryRef": "hearing_scheduled",
+              "displayName": "Hearing?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "has_fiscal_note"
+                }
+              },
+              "queryRef": "watchlist.has_fiscal_note",
+              "nativeQueryRef": "has_fiscal_note",
+              "displayName": "Fiscal note?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
+                  "Property": "last_action_date"
+                }
+              },
+              "queryRef": "watchlist.last_action_date",
+              "nativeQueryRef": "last_action_date",
+              "displayName": "Last action"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "watchlist"
+                  }
+                },
+                "Property": "filed_date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bills (newest filing first)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

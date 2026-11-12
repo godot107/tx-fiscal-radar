@@ -1,0 +1,17 @@
+{
+  "name": "ds_lake_parquet",
+  "properties": {
+    "description": "Gold exports (Parquet) that Data Factory copies into Azure SQL staging tables.",
+    "linkedServiceName": { "referenceName": "ls_lake", "type": "LinkedServiceReference" },
+    "parameters": { "folder": { "type": "string" } },
+    "type": "Parquet",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": "gold",
+        "folderPath": { "value": "@dataset().folder", "type": "Expression" }
+      },
+      "compressionCodec": "snappy"
+    }
+  }
+}

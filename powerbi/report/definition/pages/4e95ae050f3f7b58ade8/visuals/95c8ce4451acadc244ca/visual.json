@@ -1,0 +1,276 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "95c8ce4451acadc244ca",
+  "position": {
+    "x": 20,
+    "y": 80,
+    "z": 0,
+    "width": 700,
+    "height": 625,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agency_exposure"
+                    }
+                  },
+                  "Property": "agency_name"
+                }
+              },
+              "queryRef": "agency_exposure.agency_name",
+              "nativeQueryRef": "agency_name",
+              "displayName": "Agency"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "load_pct_of_spend"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.load_pct_of_spend)",
+              "nativeQueryRef": "Sum of load_pct_of_spend",
+              "displayName": "Load % of spend"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "attributed_cost_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.attributed_cost_2yr)",
+              "nativeQueryRef": "Sum of attributed_cost_2yr",
+              "displayName": "Cost 2026-27"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "fy2024_spend"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.fy2024_spend)",
+              "nativeQueryRef": "Sum of fy2024_spend",
+              "displayName": "FY2024 spend"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "new_fte"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.new_fte)",
+              "nativeQueryRef": "Sum of new_fte",
+              "displayName": "New FTEs"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "shared_bills"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.shared_bills)",
+              "nativeQueryRef": "Sum of shared_bills",
+              "displayName": "Shared bills"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "ai_rows_needing_review"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.ai_rows_needing_review)",
+              "nativeQueryRef": "Sum of ai_rows_needing_review",
+              "displayName": "AI rows to review"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "agency_exposure"
+                      }
+                    },
+                    "Property": "load_pct_of_spend"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Agencies ranked by new cost load (FY2024 spend over $5M)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "rankable",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "agency_exposure"
+              }
+            },
+            "Property": "rankable"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "x",
+              "Entity": "agency_exposure",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "x"
+                          }
+                        },
+                        "Property": "rankable"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

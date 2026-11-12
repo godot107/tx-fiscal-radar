@@ -1,0 +1,38 @@
+{
+  "name": "tr_weekly",
+  "properties": {
+    "description": "Sunday 5:00 AM Central: full reconcile copy of the live session (catches anything a manifest window missed) + transform with Delta OPTIMIZE/VACUUM + load.",
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Week",
+        "interval": 1,
+        "startTime": "2026-11-11T00:00:00",
+        "timeZone": "Central Standard Time",
+        "schedule": {
+          "hours": [
+            5
+          ],
+          "minutes": [
+            0
+          ],
+          "weekDays": [
+            "Sunday"
+          ]
+        }
+      }
+    },
+    "pipelines": [
+      {
+        "pipelineReference": {
+          "referenceName": "pl_daily",
+          "type": "PipelineReference"
+        },
+        "parameters": {
+          "mode": "weekly"
+        }
+      }
+    ]
+  }
+}

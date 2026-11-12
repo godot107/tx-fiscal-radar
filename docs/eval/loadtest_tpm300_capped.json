@@ -1,0 +1,1732 @@
+{
+  "label": "tpm300_capped",
+  "per_user": 6,
+  "stages": [
+    {
+      "users": 5,
+      "requests": 30,
+      "ok": 30,
+      "wall_seconds": 156.2,
+      "answers_per_min": 11.5,
+      "p50_s": 18.11,
+      "p95_s": 39.49,
+      "throttled_share": 0.0,
+      "error_share": 0.0,
+      "tokens_per_min": 70029,
+      "tokens_per_answer": 6076,
+      "errors": [],
+      "raw": [
+        {
+          "status": 200,
+          "seconds": 15.84,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 113
+          },
+          "error": null,
+          "server_seconds": 14.52,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.69,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 65
+          },
+          "error": null,
+          "server_seconds": 16.39,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.95,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 121
+          },
+          "error": null,
+          "server_seconds": 16.61,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.87,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 208
+          },
+          "error": null,
+          "server_seconds": 17.55,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 28.7,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 281
+          },
+          "error": null,
+          "server_seconds": 24.0,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 12.9,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 112
+          },
+          "error": null,
+          "server_seconds": 11.92,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.34,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 15.13,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 16.35,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 15.18,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 17.42,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 121
+          },
+          "error": null,
+          "server_seconds": 16.15,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.63,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 194
+          },
+          "error": null,
+          "server_seconds": 18.32,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.97,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 17.76,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 31.55,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 15349,
+            "completion": 295
+          },
+          "error": null,
+          "server_seconds": 30.31,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.59,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 13.32,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.0,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 176
+          },
+          "error": null,
+          "server_seconds": 17.75,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 50.84,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 419
+          },
+          "error": null,
+          "server_seconds": 49.58,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.99,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 295
+          },
+          "error": null,
+          "server_seconds": 17.74,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 23.41,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 107
+          },
+          "error": null,
+          "server_seconds": 17.92,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.32,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 422
+          },
+          "error": null,
+          "server_seconds": 16.03,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.55,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 16.14,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.96,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 259
+          },
+          "error": null,
+          "server_seconds": 17.72,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.28,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 113
+          },
+          "error": null,
+          "server_seconds": 12.03,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.04,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 476
+          },
+          "error": null,
+          "server_seconds": 18.9,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 39.49,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21861,
+            "completion": 331
+          },
+          "error": null,
+          "server_seconds": 37.21,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.11,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 127
+          },
+          "error": null,
+          "server_seconds": 16.84,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 33.93,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 32.72,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 36.96,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21491,
+            "completion": 288
+          },
+          "error": null,
+          "server_seconds": 35.73,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.38,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 120
+          },
+          "error": null,
+          "server_seconds": 16.09,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.48,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 178
+          },
+          "error": null,
+          "server_seconds": 14.21,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.12,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 139
+          },
+          "error": null,
+          "server_seconds": 15.8,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.6,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 113
+          },
+          "error": null,
+          "server_seconds": 12.3,
+          "run_status": "RunStatus.COMPLETED"
+        }
+      ]
+    },
+    {
+      "users": 20,
+      "requests": 120,
+      "ok": 95,
+      "wall_seconds": 124.1,
+      "answers_per_min": 45.9,
+      "p50_s": 17.82,
+      "p95_s": 38.65,
+      "throttled_share": 0.0,
+      "error_share": 0.208,
+      "tokens_per_min": 306360,
+      "tokens_per_answer": 6673,
+      "errors": [
+        "daily limit"
+      ],
+      "raw": [
+        {
+          "status": 200,
+          "seconds": 14.28,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 422
+          },
+          "error": null,
+          "server_seconds": 12.92,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.4,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 5059,
+            "completion": 156
+          },
+          "error": null,
+          "server_seconds": 14.05,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.47,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 182
+          },
+          "error": null,
+          "server_seconds": 14.1,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.39,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 202
+          },
+          "error": null,
+          "server_seconds": 14.95,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.48,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 15.13,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.45,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 108
+          },
+          "error": null,
+          "server_seconds": 16.08,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.94,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 245
+          },
+          "error": null,
+          "server_seconds": 17.57,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.85,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 182
+          },
+          "error": null,
+          "server_seconds": 15.93,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 21.28,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 107
+          },
+          "error": null,
+          "server_seconds": 16.28,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 21.79,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 266
+          },
+          "error": null,
+          "server_seconds": 20.48,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 21.83,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 124
+          },
+          "error": null,
+          "server_seconds": 16.67,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 23.11,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 112
+          },
+          "error": null,
+          "server_seconds": 18.05,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 23.17,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 21.83,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 23.17,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 188
+          },
+          "error": null,
+          "server_seconds": 18.1,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 24.63,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 19.77,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 25.28,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 65
+          },
+          "error": null,
+          "server_seconds": 20.32,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 25.55,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 259
+          },
+          "error": null,
+          "server_seconds": 24.22,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 28.66,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 416
+          },
+          "error": null,
+          "server_seconds": 23.42,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.43,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 65
+          },
+          "error": null,
+          "server_seconds": 13.19,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.11,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 14.83,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.37,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 132
+          },
+          "error": null,
+          "server_seconds": 15.05,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.81,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 12.55,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 19.33,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 284
+          },
+          "error": null,
+          "server_seconds": 18.05,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.36,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 5059,
+            "completion": 151
+          },
+          "error": null,
+          "server_seconds": 17.07,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.58,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 176
+          },
+          "error": null,
+          "server_seconds": 12.71,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.81,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 249
+          },
+          "error": null,
+          "server_seconds": 14.52,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.2,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 19.0,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 37.4,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 15167,
+            "completion": 301
+          },
+          "error": null,
+          "server_seconds": 32.36,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.34,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 209
+          },
+          "error": null,
+          "server_seconds": 17.03,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.75,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 418
+          },
+          "error": null,
+          "server_seconds": 14.47,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.16,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 5059,
+            "completion": 152
+          },
+          "error": null,
+          "server_seconds": 15.92,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.36,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 175
+          },
+          "error": null,
+          "server_seconds": 16.59,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.64,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 154
+          },
+          "error": null,
+          "server_seconds": 18.37,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.68,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5236,
+            "completion": 432
+          },
+          "error": null,
+          "server_seconds": 13.45,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.06,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 207
+          },
+          "error": null,
+          "server_seconds": 14.08,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.39,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 230
+          },
+          "error": null,
+          "server_seconds": 17.14,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.66,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 113
+          },
+          "error": null,
+          "server_seconds": 12.41,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.38,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 423
+          },
+          "error": null,
+          "server_seconds": 16.08,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 19.22,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5236,
+            "completion": 416
+          },
+          "error": null,
+          "server_seconds": 17.98,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.68,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 68
+          },
+          "error": null,
+          "server_seconds": 14.16,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 51.32,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21861,
+            "completion": 353
+          },
+          "error": null,
+          "server_seconds": 46.37,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.51,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 123
+          },
+          "error": null,
+          "server_seconds": 14.21,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.56,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 108
+          },
+          "error": null,
+          "server_seconds": 13.28,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 31.84,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 14929,
+            "completion": 287
+          },
+          "error": null,
+          "server_seconds": 31.49,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.48,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 14.23,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 31.65,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 14962,
+            "completion": 272
+          },
+          "error": null,
+          "server_seconds": 29.41,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 19.16,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 259
+          },
+          "error": null,
+          "server_seconds": 18.71,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.5,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 118
+          },
+          "error": null,
+          "server_seconds": 14.53,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.71,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 220
+          },
+          "error": null,
+          "server_seconds": 16.4,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.41,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 11.97,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 11.02,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 121
+          },
+          "error": null,
+          "server_seconds": 10.35,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 19.12,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 178
+          },
+          "error": null,
+          "server_seconds": 17.87,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.54,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 238
+          },
+          "error": null,
+          "server_seconds": 14.85,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.41,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 176
+          },
+          "error": null,
+          "server_seconds": 16.14,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.47,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 121
+          },
+          "error": null,
+          "server_seconds": 12.24,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.59,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 5059,
+            "completion": 151
+          },
+          "error": null,
+          "server_seconds": 14.36,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.14,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 283
+          },
+          "error": null,
+          "server_seconds": 16.84,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.16,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 424
+          },
+          "error": null,
+          "server_seconds": 17.48,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 35.93,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 35.55,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 28.66,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 10453,
+            "completion": 257
+          },
+          "error": null,
+          "server_seconds": 27.41,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.31,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 141
+          },
+          "error": null,
+          "server_seconds": 14.19,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 26.17,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 25.79,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 11.89,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 5059,
+            "completion": 151
+          },
+          "error": null,
+          "server_seconds": 10.67,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.57,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 202
+          },
+          "error": null,
+          "server_seconds": 18.27,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 25.31,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 10453,
+            "completion": 289
+          },
+          "error": null,
+          "server_seconds": 24.65,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 21.75,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 451
+          },
+          "error": null,
+          "server_seconds": 20.48,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.19,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 16.0,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 14.95,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 65
+          },
+          "error": null,
+          "server_seconds": 14.21,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.89,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 453
+          },
+          "error": null,
+          "server_seconds": 15.63,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 12.82,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 112
+          },
+          "error": null,
+          "server_seconds": 12.23,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.98,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 112
+          },
+          "error": null,
+          "server_seconds": 12.95,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.95,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 14.68,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.06,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 14.9,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.4,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 178
+          },
+          "error": null,
+          "server_seconds": 12.15,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.82,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 256
+          },
+          "error": null,
+          "server_seconds": 15.18,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 41.1,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21693,
+            "completion": 362
+          },
+          "error": null,
+          "server_seconds": 39.0,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.86,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 127
+          },
+          "error": null,
+          "server_seconds": 13.53,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 1.19,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 0.26,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 14.31,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 13.05,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 1.2,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 0.82,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.2,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 21.54,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 121
+          },
+          "error": null,
+          "server_seconds": 20.95,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 35.75,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 15349,
+            "completion": 384
+          },
+          "error": null,
+          "server_seconds": 34.46,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 0.66,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.22,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.04,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.19,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.21,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 14.52,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 150
+          },
+          "error": null,
+          "server_seconds": 13.97,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.81,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 420
+          },
+          "error": null,
+          "server_seconds": 17.4,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 27.14,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 15034,
+            "completion": 285
+          },
+          "error": null,
+          "server_seconds": 25.84,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 19.61,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5236,
+            "completion": 484
+          },
+          "error": null,
+          "server_seconds": 18.27,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.06,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 208
+          },
+          "error": null,
+          "server_seconds": 15.8,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 2.24,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.86,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.37,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 2.28,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 0.47,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 14.33,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 169
+          },
+          "error": null,
+          "server_seconds": 13.76,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 1.17,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 17.82,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 423
+          },
+          "error": null,
+          "server_seconds": 15.51,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 31.11,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 15013,
+            "completion": 332
+          },
+          "error": null,
+          "server_seconds": 30.68,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 23.17,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 290
+          },
+          "error": null,
+          "server_seconds": 21.94,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 1.22,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 25.62,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 25.38,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.2,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.23,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 20.51,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 423
+          },
+          "error": null,
+          "server_seconds": 18.38,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 81.13,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21432,
+            "completion": 342
+          },
+          "error": null,
+          "server_seconds": 80.07,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 1.19,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.23,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 38.65,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21861,
+            "completion": 291
+          },
+          "error": null,
+          "server_seconds": 37.02,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 0.89,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.19,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 1.28,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 32.0,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 15317,
+            "completion": 327
+          },
+          "error": null,
+          "server_seconds": 30.72,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 47.49,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 21444,
+            "completion": 277
+          },
+          "error": null,
+          "server_seconds": 46.29,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 1.2,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": "daily limit",
+          "server_seconds": null,
+          "run_status": null
+        }
+      ]
+    }
+  ]
+}

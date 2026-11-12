@@ -1,0 +1,369 @@
+{
+  "name": "pl_manifest_apply",
+  "properties": {
+    "description": "Manifest has entries: load it into SQL \u2192 changed folders \u2192 re-copy only those (bill history + fiscal notes). Watermark = newest manifest timestamp (source clock).",
+    "folder": {
+      "name": "ingest"
+    },
+    "parameters": {
+      "parent_run_id": {
+        "type": "string"
+      },
+      "source_id": {
+        "type": "int"
+      },
+      "source_name": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "session_code": {
+        "type": "string"
+      },
+      "src_path": {
+        "type": "string"
+      },
+      "sink_path": {
+        "type": "string"
+      },
+      "file_pattern": {
+        "type": "string"
+      },
+      "recursive": {
+        "type": "int"
+      },
+      "watermark_utc": {
+        "type": "string"
+      },
+      "window_end_utc": {
+        "type": "string"
+      }
+    },
+    "activities": [
+      {
+        "name": "copy_manifest",
+        "type": "Copy",
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 120
+        },
+        "description": "Load the Legislature's change manifest (history_periodic.xml) into stg.legis_manifest.",
+        "inputs": [
+          {
+            "referenceName": "ds_ftp_xml",
+            "type": "DatasetReference",
+            "parameters": {
+              "folder": {
+                "value": "@pipeline().parameters.src_path",
+                "type": "Expression"
+              },
+              "file": "history_periodic.xml"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_sql",
+            "type": "DatasetReference",
+            "parameters": {
+              "schema": "stg",
+              "table": "legis_manifest"
+            }
+          }
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "XmlSource",
+            "storeSettings": {
+              "type": "FtpReadSettings",
+              "recursive": false,
+              "useBinaryTransfer": true
+            },
+            "formatSettings": {
+              "type": "XmlReadSettings",
+              "validationMode": "none",
+              "detectDataType": false,
+              "namespaces": true
+            }
+          },
+          "sink": {
+            "type": "AzureSqlSink",
+            "writeBehavior": "insert",
+            "preCopyScript": {
+              "value": "@concat('DELETE FROM stg.legis_manifest WHERE source_id = ', string(pipeline().parameters.source_id), ' OR source_id IS NULL')",
+              "type": "Expression"
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "collectionReference": "$['bills']['bill']",
+            "mappings": [
+              {
+                "source": {
+                  "path": "['@id']"
+                },
+                "sink": {
+                  "name": "bill_label"
+                }
+              },
+              {
+                "source": {
+                  "path": "['@path']"
+                },
+                "sink": {
+                  "name": "file_path"
+                }
+              },
+              {
+                "source": {
+                  "path": "['@timestamp']"
+                },
+                "sink": {
+                  "name": "ts_text"
+                }
+              }
+            ]
+          },
+          "enableStaging": false
+        }
+      },
+      {
+        "name": "lookup_changes",
+        "type": "Lookup",
+        "dependsOn": [
+          {
+            "activity": "copy_manifest",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "description": "Changed 100-bill folders since the watermark (and the newest manifest timestamp).",
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderStoredProcedureName": "ctl.usp_manifest_changes",
+            "storedProcedureParameters": {
+              "source_id": {
+                "type": "Int32",
+                "value": {
+                  "value": "@pipeline().parameters.source_id",
+                  "type": "Expression"
+                }
+              }
+            }
+          },
+          "dataset": {
+            "referenceName": "ds_sql",
+            "type": "DatasetReference"
+          },
+          "firstRowOnly": false
+        }
+      },
+      {
+        "name": "for_each_group",
+        "type": "ForEach",
+        "dependsOn": [
+          {
+            "activity": "lookup_changes",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@activity('lookup_changes').output.value",
+            "type": "Expression"
+          },
+          "isSequential": false,
+          "batchCount": 2,
+          "activities": [
+            {
+              "name": "copy_group",
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "pl_copy_group",
+                  "type": "PipelineReference"
+                },
+                "waitOnCompletion": true,
+                "parameters": {
+                  "session_code": {
+                    "value": "@pipeline().parameters.session_code",
+                    "type": "Expression"
+                  },
+                  "chamber_folder": {
+                    "value": "@item().chamber_folder",
+                    "type": "Expression"
+                  },
+                  "group_folder": {
+                    "value": "@item().group_folder",
+                    "type": "Expression"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "log_ok",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [
+          {
+            "activity": "for_each_group",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_sql",
+          "type": "LinkedServiceReference"
+        },
+        "typeProperties": {
+          "storedProcedureName": "ctl.usp_log_ingest",
+          "storedProcedureParameters": {
+            "pipeline_run_id": {
+              "value": {
+                "value": "@pipeline().parameters.parent_run_id",
+                "type": "Expression"
+              },
+              "type": "String"
+            },
+            "source_id": {
+              "value": {
+                "value": "@pipeline().parameters.source_id",
+                "type": "Expression"
+              },
+              "type": "Int32"
+            },
+            "window_start_utc": {
+              "value": {
+                "value": "@pipeline().parameters.watermark_utc",
+                "type": "Expression"
+              },
+              "type": "DateTime"
+            },
+            "window_end_utc": {
+              "value": {
+                "value": "@if(empty(activity('lookup_changes').output.value), pipeline().parameters.watermark_utc, first(activity('lookup_changes').output.value).run_max_ts)",
+                "type": "Expression"
+              },
+              "type": "DateTime"
+            },
+            "status": {
+              "value": "Succeeded",
+              "type": "String"
+            },
+            "files_read": {
+              "value": {
+                "value": "@length(activity('lookup_changes').output.value)",
+                "type": "Expression"
+              },
+              "type": "Int32"
+            }
+          }
+        }
+      },
+      {
+        "name": "log_fail",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [
+          {
+            "activity": "for_each_group",
+            "dependencyConditions": [
+              "Failed",
+              "Skipped"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_sql",
+          "type": "LinkedServiceReference"
+        },
+        "typeProperties": {
+          "storedProcedureName": "ctl.usp_log_ingest",
+          "storedProcedureParameters": {
+            "pipeline_run_id": {
+              "value": {
+                "value": "@pipeline().parameters.parent_run_id",
+                "type": "Expression"
+              },
+              "type": "String"
+            },
+            "source_id": {
+              "value": {
+                "value": "@pipeline().parameters.source_id",
+                "type": "Expression"
+              },
+              "type": "Int32"
+            },
+            "window_start_utc": {
+              "value": {
+                "value": "@pipeline().parameters.watermark_utc",
+                "type": "Expression"
+              },
+              "type": "DateTime"
+            },
+            "window_end_utc": {
+              "value": {
+                "value": "@pipeline().parameters.watermark_utc",
+                "type": "Expression"
+              },
+              "type": "DateTime"
+            },
+            "status": {
+              "value": "Failed",
+              "type": "String"
+            },
+            "error_message": {
+              "value": {
+                "value": "@concat('manifest ingest failed: ', coalesce(activity('copy_manifest').error?.message, activity('lookup_changes').error?.message, activity('for_each_group').error?.message, 'see run'))",
+                "type": "Expression"
+              },
+              "type": "String"
+            }
+          }
+        }
+      },
+      {
+        "name": "fail_manifest",
+        "type": "Fail",
+        "dependsOn": [
+          {
+            "activity": "log_fail",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "message": {
+            "value": "@concat(pipeline().parameters.source_name, ': manifest ingest failed')",
+            "type": "Expression"
+          },
+          "errorCode": "INGEST_MANIFEST_FAILED"
+        }
+      }
+    ]
+  }
+}

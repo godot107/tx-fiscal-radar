@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Fiscal Note Desk</title>
+<style>
+  :root { --bg: #f7f7f5; --surface: #ffffff; --ink: #1d1d1b; --ink-2: #55554f; --line: #e2e1dc; --accent: #1f5fbf; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #141413; --surface: #1e1e1c; --ink: #ecebe6; --ink-2: #a9a8a1; --line: #34332f; --accent: #7aa7ff; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; margin-top: 28px; }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); font-size: .92rem; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  a { color: var(--accent); }
+  .muted { color: var(--ink-2); font-size: .9rem; }
+  @media (max-width: 600px) { table, tbody, tr, td, th { display: block; } th { display: none; } td { border: 0; padding: 4px 0; } tr { border-bottom: 1px solid var(--line); padding: 8px 0; } }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Fiscal Note Desk</a></p>
+  <h1>What we collect, and why</h1>
+  <p>Fiscal Note Desk answers questions about public Texas bills and fiscal notes. It is built to keep as little about
+     you as it can. This page lists everything it keeps.</p>
+
+  <h2>By default</h2>
+  <table>
+    <tr><th>What</th><th>Why</th><th>How long</th></tr>
+    <tr><td><strong>Your question and the answer</strong>: not kept. The conversation is deleted right after you get your answer.</td><td></td><td>None</td></tr>
+    <tr><td>A usage record per question: a <strong>pseudonymous id</strong> (a one-way code derived from your sign-in, not your name or email), a session id, how long it took, what it cost, which safety checks fired. <strong>No question text.</strong></td><td>Cost control (each person has a daily limit), abuse detection, service health</td><td>30 days</td></tr>
+    <tr><td>Today's answer cache: the answer to a question, keyed by a code of the question text, with nothing about who asked</td><td>Repeated questions are answered instantly at no cost</td><td>Until the next nightly data load; deleted within 2 days</td></tr>
+    <tr><td>Database audit: which fixed queries the service ran against the public warehouse</td><td>Security</td><td>30 days</td></tr>
+  </table>
+
+  <h2>Only if you choose</h2>
+  <table>
+    <tr><th>Option</th><th>What is kept</th><th>How long</th></tr>
+    <tr><td>☐ Remember my agency and topics</td><td>Short notes about your work context (for example, "works in an agency budget office, follows IT bills"). Not personal details.</td><td>30 days</td></tr>
+    <tr><td>☐ Help improve the service</td><td>That question and its answer, so we can review mistakes</td><td>30 days, then deleted</td></tr>
+    <tr><td>👍 / 👎 and an optional comment</td><td>Your rating, and the comment only if you write one</td><td>30 days</td></tr>
+    <tr><td>Compare two answers</td><td>Which of two answers you preferred (not your question)</td><td>30 days</td></tr>
+  </table>
+
+  <h2>What we don't do</h2>
+  <ul>
+    <li>We don't analyze the content of your questions to guess your views, politics or mood.</li>
+    <li>We don't sell or share data. Usage reports show totals, never individual people (a topic is only reported when at least five people asked about it).</li>
+    <li>We don't use your questions to train models.</li>
+  </ul>
+
+  <h2>Public records</h2>
+  <p>If this service were run by a Texas state agency, records it keeps could be subject to the
+     <strong>Texas Public Information Act</strong>. That's one more reason it keeps so little by default.</p>
+
+  <h2>External AI tools (MCP)</h2>
+  <p>If you connect your own AI assistant to the MCP endpoint, the same rules apply: each tool call is logged with a
+     pseudonymous id and no query text, for 30 days. What your assistant does with the results is governed by its own
+     provider's policy.</p>
+
+  <p class="muted">Independent portfolio project, not a government service. Questions about this page:
+     see the project repository.</p>
+</main>
+</body>
+</html>

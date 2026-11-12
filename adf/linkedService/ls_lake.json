@@ -1,0 +1,8 @@
+{
+  "name": "ls_lake",
+  "properties": {
+    "description": "ADLS Gen2 lake. No credentials: the factory's system-assigned managed identity (Storage Blob Data Contributor).",
+    "type": "AzureBlobFS",
+    "typeProperties": { "url": "${LAKE_DFS_ENDPOINT}" }
+  }
+}

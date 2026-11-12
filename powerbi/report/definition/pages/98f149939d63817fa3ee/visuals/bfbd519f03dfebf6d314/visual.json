@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bfbd519f03dfebf6d314",
+  "position": {
+    "x": 20,
+    "y": 195,
+    "z": 0,
+    "width": 560,
+    "height": 510,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agency_exposure"
+                    }
+                  },
+                  "Property": "agency_name"
+                }
+              },
+              "queryRef": "agency_exposure.agency_name",
+              "nativeQueryRef": "agency_name",
+              "displayName": "Agency"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "direct_cost_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.direct_cost_2yr)",
+              "nativeQueryRef": "Sum of direct_cost_2yr",
+              "displayName": "Direct"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "ai_cost_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.ai_cost_2yr)",
+              "nativeQueryRef": "Sum of ai_cost_2yr",
+              "displayName": "AI-attributed (checked)"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "agency_exposure"
+                        }
+                      },
+                      "Property": "attributed_cost_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(agency_exposure.attributed_cost_2yr)",
+              "nativeQueryRef": "Sum of attributed_cost_2yr",
+              "displayName": "Total"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "agency_exposure"
+                      }
+                    },
+                    "Property": "attributed_cost_2yr"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'New 2026-27 cost by agency'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

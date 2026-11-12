@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "7367efa9b841bea15d5a",
+  "position": {
+    "x": 20,
+    "y": 195,
+    "z": 0,
+    "width": 620,
+    "height": 510,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "filing_pace"
+                    }
+                  },
+                  "Property": "day_of_prefiling"
+                }
+              },
+              "queryRef": "filing_pace.day_of_prefiling",
+              "nativeQueryRef": "day_of_prefiling",
+              "displayName": "Days since prefiling opened"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "filing_pace"
+                        }
+                      },
+                      "Property": "filed_cumulative"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Max(filing_pace.filed_cumulative)",
+              "nativeQueryRef": "Max of filed_cumulative",
+              "displayName": "Bills filed (cumulative)"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "filing_pace"
+                    }
+                  },
+                  "Property": "session_code"
+                }
+              },
+              "queryRef": "filing_pace.session_code",
+              "nativeQueryRef": "session_code",
+              "displayName": "Session"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Filing pace: 2027 vs 2025'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

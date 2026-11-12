@@ -1,0 +1,281 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c6e7067ef9f05d83bc79",
+  "position": {
+    "x": 630,
+    "y": 80,
+    "z": 0,
+    "width": 630,
+    "height": 625,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "drift"
+                    }
+                  },
+                  "Property": "bill_id"
+                }
+              },
+              "queryRef": "drift.bill_id",
+              "nativeQueryRef": "bill_id",
+              "displayName": "Bill"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "drift"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "drift.status",
+              "nativeQueryRef": "status",
+              "displayName": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "drift"
+                    }
+                  },
+                  "Property": "first_version"
+                }
+              },
+              "queryRef": "drift.first_version",
+              "nativeQueryRef": "first_version",
+              "displayName": "First"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "drift"
+                        }
+                      },
+                      "Property": "first_cost_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(drift.first_cost_2yr)",
+              "nativeQueryRef": "Sum of first_cost_2yr",
+              "displayName": "First cost"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "drift"
+                    }
+                  },
+                  "Property": "latest_version"
+                }
+              },
+              "queryRef": "drift.latest_version",
+              "nativeQueryRef": "latest_version",
+              "displayName": "Latest"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "drift"
+                        }
+                      },
+                      "Property": "latest_cost_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(drift.latest_cost_2yr)",
+              "nativeQueryRef": "Sum of latest_cost_2yr",
+              "displayName": "Latest cost"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "drift"
+                        }
+                      },
+                      "Property": "abs_change_2yr"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(drift.abs_change_2yr)",
+              "nativeQueryRef": "Sum of abs_change_2yr",
+              "displayName": "Size of change"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "drift"
+                        }
+                      },
+                      "Property": "change_pct"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(drift.change_pct)",
+              "nativeQueryRef": "Avg of change_pct",
+              "displayName": "Change %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "drift"
+                      }
+                    },
+                    "Property": "abs_change_2yr"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Biggest changes, enacted bills'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "enacted_t",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "drift"
+              }
+            },
+            "Property": "status"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "x",
+              "Entity": "drift",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "x"
+                          }
+                        },
+                        "Property": "status"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'enacted'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

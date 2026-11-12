@@ -1,0 +1,14 @@
+{
+  "name": "ds_ftp_file",
+  "properties": {
+    "description": "One file on the Legislature FTP, as bytes (used to check the manifest's size before parsing it).",
+    "linkedServiceName": { "referenceName": "ls_ftp_legis", "type": "LinkedServiceReference" },
+    "parameters": { "folder": { "type": "string" }, "file": { "type": "string" } },
+    "type": "Binary",
+    "typeProperties": {
+      "location": { "type": "FtpServerLocation",
+        "folderPath": { "value": "@dataset().folder", "type": "Expression" },
+        "fileName": { "value": "@dataset().file", "type": "Expression" } }
+    }
+  }
+}

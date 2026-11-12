@@ -1,0 +1,66 @@
+{
+  "name": "pl_transform",
+  "properties": {
+    "description": "Only the Spark transform (bronze \u2192 silver \u2192 gold). full_transform = re-parse every bronze file.",
+    "folder": {
+      "name": "transform"
+    },
+    "parameters": {
+      "full_transform": {
+        "type": "bool",
+        "defaultValue": false
+      }
+    },
+    "activities": [
+      {
+        "name": "transform",
+        "type": "SynapseNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 120
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_synapse",
+          "type": "LinkedServiceReference"
+        },
+        "typeProperties": {
+          "notebook": {
+            "referenceName": {
+              "value": "nb_transform",
+              "type": "Expression"
+            },
+            "type": "NotebookReference"
+          },
+          "parameters": {
+            "full": {
+              "value": {
+                "value": "@pipeline().parameters.full_transform",
+                "type": "Expression"
+              },
+              "type": "bool"
+            },
+            "maintenance": {
+              "value": {
+                "value": "@bool(false)",
+                "type": "Expression"
+              },
+              "type": "bool"
+            }
+          },
+          "sparkPool": {
+            "referenceName": {
+              "value": "${SPARK_POOL}",
+              "type": "Expression"
+            },
+            "type": "BigDataPoolReference"
+          },
+          "executorSize": "Small",
+          "driverSize": "Small",
+          "numExecutors": 1
+        }
+      }
+    ]
+  }
+}

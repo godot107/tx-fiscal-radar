@@ -1,0 +1,16 @@
+{
+  "name": "ds_sql",
+  "properties": {
+    "description": "Generic Azure SQL dataset: Lookups pass their own query; Copy sinks pass schema/table.",
+    "linkedServiceName": { "referenceName": "ls_sql", "type": "LinkedServiceReference" },
+    "parameters": {
+      "schema": { "type": "string", "defaultValue": "ctl" },
+      "table": { "type": "string", "defaultValue": "ingest_source" }
+    },
+    "type": "AzureSqlTable",
+    "typeProperties": {
+      "schema": { "value": "@dataset().schema", "type": "Expression" },
+      "table": { "value": "@dataset().table", "type": "Expression" }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+private/
+data/
+*.egg-info/
+
+# raw Foundry evaluator output and inputs: large, and they embed subscription/tenant ids
+docs/eval/*_foundry_raw.json
+docs/eval/*_eval_input.jsonl
+
+# local agent notes (not published)
+CLAUDE.md

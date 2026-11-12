@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiscal Note Desk</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --surface: #ffffff; --ink: #1d1d1b; --ink-2: #55554f; --line: #e2e1dc;
+    --accent: #1f5fbf; --accent-ink: #ffffff; --good: #1b7a3d; --warn: #9a5b00; --bad: #b42318; --chip: #eef2f9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #141413; --surface: #1e1e1c; --ink: #ecebe6; --ink-2: #a9a8a1; --line: #34332f;
+            --accent: #7aa7ff; --accent-ink: #0d1626; --good: #6fd08f; --warn: #f0b45a; --bad: #ff8a80; --chip: #23293a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+  header h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  header p { margin: 0; color: var(--ink-2); font-size: .95rem; }
+  .user { float: right; font-size: .85rem; color: var(--ink-2); }
+  form { display: flex; gap: 8px; margin: 20px 0 8px; }
+  textarea { flex: 1; min-height: 52px; resize: vertical; padding: 12px; font: inherit; color: var(--ink);
+             background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+  button { padding: 0 18px; font: inherit; font-weight: 600; border: 0; border-radius: 8px; cursor: pointer;
+           background: var(--accent); color: var(--accent-ink); }
+  button:disabled { opacity: .55; cursor: progress; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .chip { background: var(--chip); color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
+          padding: 4px 12px; font-size: .85rem; cursor: pointer; }
+  .turn { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+  .q { font-weight: 600; margin-bottom: 8px; }
+  .a ul { padding-left: 1.2em; margin: 6px 0; }
+  .a a { color: var(--accent); word-break: break-all; }
+  .meta { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px; font-size: .85rem; color: var(--ink-2); }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+  .badge { border: 1px solid currentColor; border-radius: 6px; padding: 1px 8px; font-size: .78rem; }
+  .ok { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+  details summary { cursor: pointer; }
+  code { font-size: .8rem; background: var(--chip); padding: 1px 4px; border-radius: 4px; word-break: break-all; }
+  .err { color: var(--bad); }
+  footer { margin-top: 32px; font-size: .8rem; color: var(--ink-2); }
+  .cmp { display: block; font-size: .85rem; color: var(--ink-2); margin: 0 0 12px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+  .side { border: 1px solid var(--line); border-radius: 8px; padding: 10px; min-width: 0; }
+  .side h3 { margin: 0 0 6px; font-size: .9rem; color: var(--ink-2); }
+  .votes { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .votes button { background: var(--chip); color: var(--ink); border: 1px solid var(--line); padding: 6px 12px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="user" id="user"></span>
+    <h1>Fiscal Note Desk</h1>
+    <p>Ask about Texas bills and their fiscal notes (2025 sessions and 2027 prefiling). Numbers come from the warehouse;
+       explanations come from the Legislative Budget Board's fiscal notes, with links.</p>
+  </header>
+  <form id="f">
+    <textarea id="q" maxlength="500" placeholder="e.g. Which agencies carry the largest new costs from enacted bills?" required></textarea>
+    <button id="go" type="submit">Ask</button>
+  </form>
+  <label class="cmp"><input type="checkbox" id="cmp"> Compare two answers (A/B) and vote</label>
+  <label class="cmp"><input type="checkbox" id="mem"> Remember my agency and topics between visits (work context only, 30 days)</label>
+  <label class="cmp"><input type="checkbox" id="imp"> Help improve the service: keep my questions and answers for 30 days</label>
+  <div id="notice" class="turn" hidden>
+    <strong>Before you start:</strong> by default your questions and answers are not kept after you get your answer.
+    We log usage with a pseudonymous id (cost, safety flags, no question text) for 30 days. On a state system, records
+    can be subject to the Texas Public Information Act. <a href="privacy">What we collect and why</a>.
+    <button type="button" id="noticeOk">OK</button>
+  </div>
+  <div class="chips" id="chips"></div>
+  <section id="log" aria-live="polite"></section>
+  <footer>Independent analysis of public records. Fiscal notes are estimates of a bill version, not appropriations.
+    If you tick "Remember", the assistant keeps your agency and topics (work context only) for 30 days.
+    <a href="privacy">Privacy</a>.</footer>
+</main>
+<script>
+const EXAMPLES = [
+  "Which agencies carry the largest new costs from enacted bills, relative to their size?",
+  "Did the Legislature pass anything on school vouchers in 2025, and what does it cost?",
+  "Which enacted bills have costs that grow after 2026-27?",
+  "How many bills have been filed so far for 2027?",
+  "Will the 2027 session raise the sales tax?"
+];
+const $ = (id) => document.getElementById(id);
+let SESSION = "";
+try { SESSION = sessionStorage.getItem("txfr-session") || crypto.randomUUID(); sessionStorage.setItem("txfr-session", SESSION); }
+catch (e) { SESSION = crypto.randomUUID(); }
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+// Minimal, safe rendering: escape everything, then add bold, bullet lists and links to ftp/https sources.
+function render(md) {
+  const lines = esc(md).split(/\n/);
+  let html = "", inList = false;
+  for (let l of lines) {
+    l = l.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+         .replace(/((?:https|ftp):\/\/[^\s)<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    const m = l.match(/^\s*[-*•]\s+(.*)/);
+    if (m) { if (!inList) { html += "<ul>"; inList = true; } html += `<li>${m[1]}</li>`; continue; }
+    if (inList) { html += "</ul>"; inList = false; }
+    html += l.trim() ? `<p>${l}</p>` : "";
+  }
+  return html + (inList ? "</ul>" : "");
+}
+
+function costHtml(c) {
+  if (!c || !c.usd) return "";
+  const rows = Object.entries(c.usd).filter(([k]) => k !== "total")
+    .map(([k, v]) => `<li>${esc(k.replace(/_/g, " "))}: $${esc(Number(v).toFixed(5))}</li>`).join("");
+  return `<p>Cost of this answer (list price, checked ${esc(c.prices_checked || "")}):</p><ul>${rows}</ul>`;
+}
+
+// Charts from the agent's code interpreter: base64 PNG only, rendered as <img> (CSP allows data: images)
+function imagesHtml(imgs) {
+  return (imgs || []).filter(b => /^[A-Za-z0-9+/=]+$/.test(b))
+    .map(b => `<img alt="Chart drawn by the assistant" style="max-width:100%;margin-top:8px" src="data:image/png;base64,${b}">`).join("");
+}
+
+function feedbackHtml() {
+  return `<div class="votes fb" role="group" aria-label="Was this answer useful?">
+    <button type="button" data-r="up" aria-label="Useful">👍 Useful</button>
+    <button type="button" data-r="down" aria-label="Not useful">👎 Not useful</button></div>`;
+}
+
+function wireFeedback(turn, r) {
+  turn.querySelectorAll(".fb button").forEach(b => b.onclick = async () => {
+    const comment = b.dataset.r === "down" ? (prompt("Optional: what was wrong? (stored for 30 days; leave empty to skip)") || "") : "";
+    await fetch("api/feedback", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({rating: b.dataset.r, comment, answer_ref: r.answer_ref, cached: !!r.cached})});
+    turn.querySelector(".fb").innerHTML = "<span>Thanks for the feedback.</span>";
+  });
+}
+
+function pairHtml(r) {
+  const side = (s, i) => `<div class="side"><h3>Answer ${i + 1}</h3>${render(s.answer || "(no answer)")}${imagesHtml(s.images)}${metaHtml(s)}</div>`;
+  return `<div class="pair">${r.sides.map(side).join("")}</div>
+    <div class="votes" role="group" aria-label="Which answer is more useful?">
+      <button type="button" data-c="left">Answer 1 is better</button>
+      <button type="button" data-c="right">Answer 2 is better</button>
+      <button type="button" data-c="tie">About the same</button></div>`;
+}
+
+function wireVotes(turn, pairId) {
+  turn.querySelectorAll(".votes button").forEach(b => b.onclick = async () => {
+    await fetch("api/vote", {method: "POST", headers: {"Content-Type": "application/json"},
+                             body: JSON.stringify({pair_id: pairId, choice: b.dataset.c})});
+    turn.querySelector(".votes").innerHTML = "<span>Thanks: vote recorded.</span>";
+  });
+}
+
+function metaHtml(r) {
+  const g = r.guard || {}, gr = g.groundedness || {};
+  const b = [];
+  if (g.docs_removed) b.push(`<span class="badge bad">${g.docs_removed} search result(s) removed: planted instructions</span>`);
+  if (gr.checked) b.push(gr.ungrounded
+      ? `<span class="badge warn">Groundedness check: ${Math.round((gr.ungrounded_pct || 0) * 100)}% not supported by sources</span>`
+      : `<span class="badge ok">Groundedness check: supported by sources</span>`);
+  if ((r.memories_used || []).length) b.push(`<span class="badge ok">Used ${r.memories_used.length} memory item(s)</span>`);
+  if (r.cached) b.push(`<span class="badge ok">From today's answer cache (no new cost)</span>`);
+  const tools = (r.tool_calls || []).map(t => `<li><code>${esc(t.tool)}</code> ${esc(JSON.stringify(Object.fromEntries(Object.entries(t).filter(([k]) => k !== "tool"))))}</li>`).join("");
+  const mem = (r.memories_used || []).map(m => `<li>${esc(m)}</li>`).join("");
+  const unsup = (gr.ungrounded_text || []).map(t => `<li>${esc(t)}</li>`).join("");
+  return `<div class="meta"><div class="badges">${b.join("")}</div>
+    <details><summary>How this was answered · ${esc(r.seconds)} s · $${esc((((r.cost || {}).usd || {}).total ?? 0).toFixed(4))}</summary>
+      <p>Tool calls:</p><ul>${tools || "<li>none</li>"}</ul>
+      ${mem ? `<p>What it remembered about you:</p><ul>${mem}</ul>` : ""}
+      ${costHtml(r.cost)}
+      ${unsup ? `<p>Statements the groundedness check could not find in the sources:</p><ul>${unsup}</ul>` : ""}
+    </details></div>`;
+}
+
+async function ask(q) {
+  const turn = document.createElement("div");
+  turn.className = "turn";
+  turn.innerHTML = `<div class="q">${esc(q)}</div><div class="a">Working… (checking the warehouse and the fiscal notes, ~15 s)</div>`;
+  $("log").prepend(turn);
+  $("go").disabled = true;
+  try {
+    const qs = new URLSearchParams({compare: $("cmp").checked ? "1" : "0", memory: $("mem").checked ? "1" : "0",
+                                    improve: $("imp").checked ? "1" : "0"});
+    const res = await fetch("api/ask?" + qs, {method: "POST", headers: {"Content-Type": "application/json", "x-txfr-session": SESSION},
+                                        body: JSON.stringify({question: q})});
+    if (res.status === 401) { location.href = "/.auth/login/aad?post_login_redirect_uri=/"; return; }
+    const r = await res.json();
+    if (!res.ok) throw new Error(res.status === 429 ? "Busy right now (rate limit). Try again in a minute." : (r.detail || r.error || res.statusText));
+    if (r.pair_id) { turn.querySelector(".a").innerHTML = pairHtml(r); wireVotes(turn, r.pair_id); }
+    else { turn.querySelector(".a").innerHTML = render(r.answer || "(no answer)") + imagesHtml(r.images) + metaHtml(r) + feedbackHtml();
+           wireFeedback(turn, r); }
+  } catch (e) {
+    turn.querySelector(".a").innerHTML = `<p class="err">${esc(e.message)}</p>`;
+  } finally { $("go").disabled = false; }
+}
+
+$("f").addEventListener("submit", (e) => { e.preventDefault(); const q = $("q").value.trim(); if (q) { ask(q); $("q").value = ""; } });
+$("q").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("f").requestSubmit(); } });
+for (const x of EXAMPLES) { const c = document.createElement("button"); c.type = "button"; c.className = "chip"; c.textContent = x; c.onclick = () => ask(x); $("chips").append(c); }
+try { if (!localStorage.getItem("txfr-notice")) $("notice").hidden = false; } catch (e) { $("notice").hidden = false; }
+$("noticeOk").onclick = () => { $("notice").hidden = true; try { localStorage.setItem("txfr-notice", "1"); } catch (e) {} };
+fetch("api/health").then(r => r.json()).then(h => { if (h.user) $("user").textContent = `Signed in as ${h.user}`; }).catch(() => {});
+</script>
+</body>
+</html>

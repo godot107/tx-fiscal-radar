@@ -1,0 +1,1859 @@
+{
+  "summary": {
+    "keyword": {
+      "paraphrase": {
+        "hit@6": 0.35,
+        "mrr": 0.15,
+        "median_ms": 43,
+        "n": 20
+      },
+      "exact": {
+        "hit@6": 0.9,
+        "mrr": 0.58,
+        "median_ms": 42,
+        "n": 10
+      },
+      "all": {
+        "hit@6": 0.53,
+        "mrr": 0.29,
+        "median_ms": 42,
+        "n": 30
+      }
+    },
+    "vector": {
+      "paraphrase": {
+        "hit@6": 0.9,
+        "mrr": 0.59,
+        "median_ms": 264,
+        "n": 20
+      },
+      "exact": {
+        "hit@6": 0.9,
+        "mrr": 0.78,
+        "median_ms": 253,
+        "n": 10
+      },
+      "all": {
+        "hit@6": 0.9,
+        "mrr": 0.65,
+        "median_ms": 260,
+        "n": 30
+      }
+    },
+    "hybrid": {
+      "paraphrase": {
+        "hit@6": 0.55,
+        "mrr": 0.32,
+        "median_ms": 292,
+        "n": 20
+      },
+      "exact": {
+        "hit@6": 0.9,
+        "mrr": 0.63,
+        "median_ms": 245,
+        "n": 10
+      },
+      "all": {
+        "hit@6": 0.67,
+        "mrr": 0.42,
+        "median_ms": 282,
+        "n": 30
+      }
+    },
+    "hybrid_semantic": {
+      "paraphrase": {
+        "hit@6": 0.95,
+        "mrr": 0.76,
+        "median_ms": 390,
+        "n": 20
+      },
+      "exact": {
+        "hit@6": 1.0,
+        "mrr": 1.0,
+        "median_ms": 336,
+        "n": 10
+      },
+      "all": {
+        "hit@6": 0.97,
+        "mrr": 0.84,
+        "median_ms": 361,
+        "n": 30
+      }
+    }
+  },
+  "queries": [
+    {
+      "query": "Did Texas pass school vouchers?",
+      "kind": "paraphrase",
+      "expected": [
+        "SB2"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 6331,
+        "top": [
+          "HB1104",
+          "SB2903",
+          "HB3795",
+          "HB1368",
+          "HB692",
+          "SB1344"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 3890,
+        "top": [
+          "HB3475",
+          "SB2",
+          "SB43",
+          "HB5299",
+          "SB2986",
+          "HB3297"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 254,
+        "top": [
+          "HB3297",
+          "SB843",
+          "SB799",
+          "HB3475",
+          "SB2986",
+          "HB5294"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 0.25,
+        "ms": 445,
+        "top": [
+          "HB3795",
+          "SB1409",
+          "SB1835",
+          "SB2",
+          "SB843",
+          "SB25"
+        ]
+      }
+    },
+    {
+      "query": "property tax relief for homeowners through a bigger homestead exemption",
+      "kind": "paraphrase",
+      "expected": [
+        "SB4",
+        "SB23"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.167,
+        "ms": 44,
+        "top": [
+          "HB4407",
+          "SB2317",
+          "HB3212",
+          "HB3646",
+          "HB5166",
+          "SB4"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 214,
+        "top": [
+          "HB3212",
+          "HB3685",
+          "SB23",
+          "HB4647",
+          "SB4",
+          "HB3886"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 259,
+        "top": [
+          "HB3212",
+          "HB3685",
+          "SB4",
+          "HB3886",
+          "HB4647",
+          "SB23"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 253,
+        "top": [
+          "HB9",
+          "HB3212",
+          "SB4",
+          "HB3239",
+          "SB4",
+          "SB23"
+        ]
+      }
+    },
+    {
+      "query": "extra homestead tax break for seniors and people with disabilities",
+      "kind": "paraphrase",
+      "expected": [
+        "SB23"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 43,
+        "top": [
+          "HB1136",
+          "HB3212",
+          "SB1770",
+          "HB466",
+          "SB58",
+          "HB3823"
+        ]
+      },
+      "vector": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 359,
+        "top": [
+          "HB4647",
+          "HB455",
+          "HB382",
+          "HB511",
+          "HB3581",
+          "HB4434"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 207,
+        "top": [
+          "HB3581",
+          "HB3212",
+          "HB4434",
+          "HB4647",
+          "HB3886",
+          "SB1126"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 402,
+        "top": [
+          "HB972",
+          "SB23",
+          "HB455",
+          "SB23",
+          "HB670",
+          "HB982"
+        ]
+      }
+    },
+    {
+      "query": "tax credit for company research and development spending",
+      "kind": "paraphrase",
+      "expected": [
+        "SB2206"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 42,
+        "top": [
+          "HB4393",
+          "SB2206",
+          null,
+          null,
+          null,
+          "SB2206"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 211,
+        "top": [
+          "SB2206",
+          "SB2206",
+          "HB4393",
+          "SB771",
+          "SB869",
+          "SB2018"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 294,
+        "top": [
+          "HB4393",
+          "SB2206",
+          "SB2206",
+          "SB2206",
+          "HB3191",
+          "SB2423"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 442,
+        "top": [
+          "SB2206",
+          "SB2206",
+          "SB2206",
+          "HB4393",
+          "HB4735",
+          "HB3232"
+        ]
+      }
+    },
+    {
+      "query": "tax break on equipment and inventory businesses use to make money",
+      "kind": "paraphrase",
+      "expected": [
+        "HB9"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 41,
+        "top": [
+          "HB3424",
+          "HB452",
+          "HB3833",
+          "HB4180",
+          "HB3805",
+          "SB1481"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 180,
+        "top": [
+          "HB3504",
+          "HB4083",
+          "HB9",
+          "HB3487",
+          "HB4085",
+          "HB3486"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 400,
+        "top": [
+          "HB3424",
+          "HB3504",
+          "HB452",
+          "HB4083",
+          "SB2907",
+          "HB4085"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 474,
+        "top": [
+          "HB3504",
+          "HB3424",
+          "HB452",
+          "HB4083",
+          "SB1231",
+          "SB2907"
+        ]
+      }
+    },
+    {
+      "query": "new state agency for cybersecurity",
+      "kind": "paraphrase",
+      "expected": [
+        "HB150"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 43,
+        "top": [
+          "SB1686",
+          null,
+          null,
+          null,
+          null,
+          "HB1102"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 226,
+        "top": [
+          "HB150",
+          "HB150",
+          "HB150",
+          "HB1172",
+          "SB1034",
+          "SB1686"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 225,
+        "top": [
+          "SB1686",
+          "HB150",
+          "HB150",
+          "SB1034",
+          "HB4231",
+          "HB1172"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 390,
+        "top": [
+          "HB150",
+          "HB150",
+          "HB150",
+          "HB3112",
+          "HB150",
+          "HB4437"
+        ]
+      }
+    },
+    {
+      "query": "Alzheimer's and dementia research funding institute",
+      "kind": "paraphrase",
+      "expected": [
+        "SB5"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.25,
+        "ms": 42,
+        "top": [
+          "HB1302",
+          "SB998",
+          "HB5",
+          "SB5",
+          "SB1536",
+          "HB3376"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.2,
+        "ms": 359,
+        "top": [
+          "HB1302",
+          "SB998",
+          null,
+          "HB5336",
+          "SB5",
+          "HB5"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.25,
+        "ms": 215,
+        "top": [
+          "HB1302",
+          "SB998",
+          "HB5",
+          "SB5",
+          "HB3376",
+          "SB1536"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 356,
+        "top": [
+          "SB998",
+          "HB5",
+          "SB5",
+          "HB3376",
+          "HB1302",
+          "SB1536"
+        ]
+      }
+    },
+    {
+      "query": "getting rid of the lottery commission",
+      "kind": "paraphrase",
+      "expected": [
+        "SB3070"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 46,
+        "top": [
+          "HB3201",
+          null,
+          "SB3070",
+          "SB2153",
+          "SB2402",
+          "SB2777"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 260,
+        "top": [
+          "SB3070",
+          "SB3070",
+          "SB3070",
+          "SB1988",
+          "SB3070",
+          "SB3070"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 296,
+        "top": [
+          "SB3070",
+          "HB3201",
+          "SB1988",
+          "SB3070",
+          "SB2153",
+          "SB3070"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 259,
+        "top": [
+          "SB3070",
+          "SB3070",
+          "SB3070",
+          "SB3070",
+          "SB1988",
+          "SB3070"
+        ]
+      }
+    },
+    {
+      "query": "rules for how state government uses artificial intelligence",
+      "kind": "paraphrase",
+      "expected": [
+        "HB149",
+        "SB1964",
+        "HB2818"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 42,
+        "top": [
+          "HB3755",
+          "HB3808",
+          "HB4455",
+          "SB2490",
+          "HB4018",
+          "SB382"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 224,
+        "top": [
+          "HB149",
+          "SB1964",
+          "HB2818",
+          "SB1964",
+          "SB668",
+          "SB1964"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 292,
+        "top": [
+          "HB3808",
+          "HB4455",
+          "SB668",
+          "HB4018",
+          "SB228",
+          "HB3755"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 482,
+        "top": [
+          "SB1964",
+          "HB2818",
+          "SB1964",
+          "HB149",
+          "SB1964",
+          "HB3512"
+        ]
+      }
+    },
+    {
+      "query": "money for armed security and safety at schools",
+      "kind": "paraphrase",
+      "expected": [
+        "SB260"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 49,
+        "top": [
+          "HB1340",
+          "HB462",
+          "HB758",
+          "HB4548",
+          "SB936",
+          "HB4193"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 255,
+        "top": [
+          "HB462",
+          "SB260",
+          "HB758",
+          "SB260",
+          "SB260",
+          "HB1340"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 282,
+        "top": [
+          "HB462",
+          "HB758",
+          "HB1340",
+          "HB4548",
+          "HB4193",
+          "SB936"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 252,
+        "top": [
+          "SB260",
+          "SB260",
+          "SB260",
+          "HB3143",
+          "HB5223",
+          "HB462"
+        ]
+      }
+    },
+    {
+      "query": "funding for students with disabilities in public schools",
+      "kind": "paraphrase",
+      "expected": [
+        "SB568"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 43,
+        "top": [
+          "HB466",
+          "SB58",
+          "SB186",
+          "SB154",
+          "SB1323",
+          "SB57"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 360,
+        "top": [
+          "HB2",
+          "SB568",
+          "SB568",
+          "SB2",
+          "HB2",
+          "HB2"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 203,
+        "top": [
+          "SB568",
+          "SB568",
+          "SB186",
+          "HB2",
+          "HB5063",
+          "HB430"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 548,
+        "top": [
+          "SB568",
+          "SB2",
+          "HB2",
+          "HB2",
+          "HB2",
+          "SB568"
+        ]
+      }
+    },
+    {
+      "query": "online school and remote learning for kids",
+      "kind": "paraphrase",
+      "expected": [
+        "SB569"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 76,
+        "top": [
+          "SB569",
+          "SB2682",
+          "SB3003",
+          "HB3070",
+          "SB1298",
+          "HB4244"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 177,
+        "top": [
+          "SB569",
+          "HB4320",
+          "SB569",
+          "SB569",
+          "SB806",
+          "SB2"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 379,
+        "top": [
+          "SB569",
+          "HB4320",
+          "SB569",
+          "HB4442",
+          "SB2",
+          "HB4698"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 427,
+        "top": [
+          "SB2",
+          "SB569",
+          "SB569",
+          "SB569",
+          "HB4320",
+          "SB966"
+        ]
+      }
+    },
+    {
+      "query": "health care access for people in rural counties",
+      "kind": "paraphrase",
+      "expected": [
+        "HB18"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 43,
+        "top": [
+          "SB2768",
+          "SB2062",
+          "HB5220",
+          "HB4224",
+          "SB1578",
+          "SB1375"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.2,
+        "ms": 285,
+        "top": [
+          "SB1377",
+          "HB3348",
+          "HB4799",
+          "SB1578",
+          "HB18",
+          "SB2655"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 326,
+        "top": [
+          "SB1578",
+          "HB4799",
+          "HB3348",
+          "SB1375",
+          "SB2655",
+          "HB3305"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 377,
+        "top": [
+          "HB18",
+          "HB18",
+          "HB3000",
+          "SB1377",
+          "SB2695",
+          "HB792"
+        ]
+      }
+    },
+    {
+      "query": "pay and discipline for judges",
+      "kind": "paraphrase",
+      "expected": [
+        "SB293"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.25,
+        "ms": 42,
+        "top": [
+          "SB717",
+          "HB797",
+          "HB5130",
+          "SB293",
+          "SB293",
+          "HB4780"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 318,
+        "top": [
+          "SB293",
+          "SB293",
+          "SB293",
+          "SB293",
+          "SB293",
+          "HB5130"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 287,
+        "top": [
+          "SB717",
+          "HB5130",
+          "SB293",
+          "HB797",
+          "SB293",
+          "HB4780"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 275,
+        "top": [
+          "SB293",
+          "SB293",
+          "HB2529",
+          "HB40",
+          "SB293",
+          "HB40"
+        ]
+      }
+    },
+    {
+      "query": "plugging abandoned oil and gas wells",
+      "kind": "paraphrase",
+      "expected": [
+        "SB1150"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 40,
+        "top": [
+          "HB4495",
+          "HB3091",
+          "SB782",
+          "HB3159",
+          "HB4526",
+          "SB2506"
+        ]
+      },
+      "vector": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 193,
+        "top": [
+          "HB4526",
+          "SB2506",
+          "HB1174",
+          "HB3159",
+          "HB3911",
+          "HB3619"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 233,
+        "top": [
+          "HB4526",
+          "SB2506",
+          "HB3911",
+          "HB3159",
+          "HB1174",
+          "HB3091"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 374,
+        "top": [
+          "HB3911",
+          "SB1146",
+          "SB1150",
+          "HB3619",
+          "HB4526",
+          "SB2506"
+        ]
+      }
+    },
+    {
+      "query": "preventing wildfires and helping volunteer firefighters",
+      "kind": "paraphrase",
+      "expected": [
+        "SB34"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 42,
+        "top": [
+          "SB2234",
+          "HB3912",
+          "SB1189",
+          "SB2432",
+          "SB2318",
+          "HB3988"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 256,
+        "top": [
+          "SB34",
+          "SB767",
+          "SB2190",
+          "HB1168",
+          "SB272",
+          "HB696"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 424,
+        "top": [
+          "SB34",
+          "HB1168",
+          "SB2645",
+          "SB767",
+          "SB2555",
+          "SB868"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 319,
+        "top": [
+          "SB34",
+          "SB767",
+          "HB3334",
+          "HB4404",
+          "HB1168",
+          "SB2892"
+        ]
+      }
+    },
+    {
+      "query": "ending car emissions testing",
+      "kind": "paraphrase",
+      "expected": [
+        "HB5033"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 40,
+        "top": [
+          "HB5359",
+          "HB3263",
+          "HB3926",
+          "SB273",
+          "HB3079",
+          "SB2379"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 322,
+        "top": [
+          "HB5359",
+          "HB5033",
+          "HB5033",
+          "HB5033",
+          "HB5033",
+          "SB1799"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 369,
+        "top": [
+          "HB5359",
+          "HB3079",
+          "SB1799",
+          "HB3868",
+          "HB4049",
+          "HB3926"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 242,
+        "top": [
+          "HB5033",
+          "SB1799",
+          "HB5359",
+          "HB5033",
+          "HB5033",
+          "HB5033"
+        ]
+      }
+    },
+    {
+      "query": "bail reform and keeping dangerous defendants in jail before trial",
+      "kind": "paraphrase",
+      "expected": [
+        "SB9"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 42,
+        "top": [
+          "SB1785",
+          "SB9",
+          "HB413",
+          "HB833",
+          "HB4592",
+          "HB3659"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 330,
+        "top": [
+          "HB1167",
+          "SB9",
+          "SB2047",
+          "SB9",
+          "HB4592",
+          "HB413"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.25,
+        "ms": 211,
+        "top": [
+          "HB1167",
+          "HB413",
+          "HB4592",
+          "SB9",
+          "SB1785",
+          "SB9"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 393,
+        "top": [
+          "SB9",
+          "SB9",
+          "SB9",
+          "SB9",
+          "SB293",
+          "SB1047"
+        ]
+      }
+    },
+    {
+      "query": "recovering money from Medicaid fraud",
+      "kind": "paraphrase",
+      "expected": [
+        "HB142"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 42,
+        "top": [
+          "SB961",
+          "SB1038",
+          "HB4273",
+          "HB3216",
+          "SB657",
+          "HB3817"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 374,
+        "top": [
+          "HB142",
+          "HB142",
+          "HB3984",
+          "HB142",
+          "SB2458",
+          "HB142"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.2,
+        "ms": 306,
+        "top": [
+          "SB1038",
+          "HB4273",
+          "SB961",
+          "HB4012",
+          "HB142",
+          "SB712"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 328,
+        "top": [
+          "HB142",
+          "HB142",
+          "SB1038",
+          "HB142",
+          "SB1616",
+          "HB142"
+        ]
+      }
+    },
+    {
+      "query": "paying for water pipes and reservoirs",
+      "kind": "paraphrase",
+      "expected": [
+        "SB7"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 43,
+        "top": [
+          "SB2114",
+          "SB2568",
+          "SB1624",
+          "SB2115",
+          "HB4530",
+          "SB1288"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.167,
+        "ms": 264,
+        "top": [
+          "SB2662",
+          "SB2662",
+          null,
+          "SB1720",
+          "HB4329",
+          "SB7"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 304,
+        "top": [
+          "SB2115",
+          "SB2701",
+          "SB2114",
+          "SB863",
+          "SB1253",
+          null
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 411,
+        "top": [
+          "SB7",
+          "SB1261",
+          "HB3781",
+          "SB612",
+          "SB2123",
+          "SB1977"
+        ]
+      }
+    },
+    {
+      "query": "HB 2 public school finance",
+      "kind": "exact",
+      "expected": [
+        "HB2"
+      ],
+      "keyword": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 44,
+        "top": [
+          "HB1257",
+          "HB5374",
+          "SB598",
+          "HB683",
+          "HB1157",
+          "HB3460"
+        ]
+      },
+      "vector": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 195,
+        "top": [
+          "HB1257",
+          "SB233",
+          "HB462",
+          "HB122",
+          "HB124",
+          "HB1223"
+        ]
+      },
+      "hybrid": {
+        "hit": false,
+        "rr": 0.0,
+        "ms": 235,
+        "top": [
+          "HB1257",
+          "SB233",
+          "HB3082",
+          "HB5374",
+          "HB1153",
+          "HB4440"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 257,
+        "top": [
+          "HB2",
+          "HB2",
+          "HB2",
+          "HB3082",
+          "HB1257",
+          "SB233"
+        ]
+      }
+    },
+    {
+      "query": "SB 2206 franchise tax credit",
+      "kind": "exact",
+      "expected": [
+        "SB2206"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 43,
+        "top": [
+          "SB2206",
+          "SB1781",
+          "SB2814",
+          "HB5120",
+          "SB2606",
+          "HB3830"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 188,
+        "top": [
+          "SB2206",
+          "SB2206",
+          "SB211",
+          "SB1803",
+          "SB2206",
+          "SB2814"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 209,
+        "top": [
+          "SB2206",
+          "SB1781",
+          "SB2814",
+          "SB211",
+          "SB1803",
+          "SB2606"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 294,
+        "top": [
+          "SB2206",
+          "SB2206",
+          "SB2206",
+          "SB2206",
+          "SB2018",
+          "SB2018"
+        ]
+      }
+    },
+    {
+      "query": "Texas Cyber Command",
+      "kind": "exact",
+      "expected": [
+        "HB150"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 41,
+        "top": [
+          "SB2176",
+          "HB150",
+          "HB150",
+          "HB150",
+          "HB150",
+          "HB150"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 253,
+        "top": [
+          "HB150",
+          "HB150",
+          "SB2176",
+          "HB150",
+          "SB2312",
+          "HB150"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 329,
+        "top": [
+          "SB2176",
+          "HB150",
+          "HB150",
+          "HB150",
+          "HB150",
+          "HB150"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 340,
+        "top": [
+          "HB150",
+          "HB150",
+          "SB2176",
+          "HB150",
+          "HB150",
+          "HB150"
+        ]
+      }
+    },
+    {
+      "query": "education savings account program",
+      "kind": "exact",
+      "expected": [
+        "SB2"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 42,
+        "top": [
+          "SB2618",
+          "SB2",
+          "HB3102",
+          "SB3061",
+          "HB986",
+          "HB984"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 271,
+        "top": [
+          "SB2",
+          "SB2",
+          "SB2",
+          "SB2618",
+          "SB2",
+          "SB2"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 215,
+        "top": [
+          "SB2618",
+          "SB2",
+          "SB3061",
+          "HB984",
+          "SB884",
+          "SB2"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 428,
+        "top": [
+          "SB2",
+          "SB571",
+          "HB3102",
+          "SB3061",
+          "SB2",
+          "SB2618"
+        ]
+      }
+    },
+    {
+      "query": "business court",
+      "kind": "exact",
+      "expected": [
+        "HB40"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 42,
+        "top": [
+          "SB2883",
+          "HB40",
+          "SB2884",
+          "SB82",
+          "SB2411",
+          "HB4862"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 177,
+        "top": [
+          "HB40",
+          "HB40",
+          "SB2883",
+          "HB40",
+          "SB2411",
+          "HB4862"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 338,
+        "top": [
+          "SB2883",
+          "HB40",
+          "SB2411",
+          "HB4862",
+          "HB40",
+          "SB2912"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 294,
+        "top": [
+          "HB40",
+          "HB40",
+          "SB2883",
+          "HB40",
+          "SB2884",
+          "HB644"
+        ]
+      }
+    },
+    {
+      "query": "Texas Windstorm Insurance Association premium tax",
+      "kind": "exact",
+      "expected": [
+        "HB2517"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 42,
+        "top": [
+          "HB5168",
+          "SB2530",
+          "HB2517",
+          "HB3689",
+          "SB2571",
+          "SB2814"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 263,
+        "top": [
+          "HB2517",
+          "HB3689",
+          "HB2517",
+          "SB2571",
+          "SB2530",
+          "HB5168"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 343,
+        "top": [
+          "HB2517",
+          "HB3689",
+          "HB5168",
+          "SB2530",
+          "SB2571",
+          "HB2517"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 438,
+        "top": [
+          "HB2517",
+          "HB2517",
+          "HB4044",
+          "SB2530",
+          "HB3631",
+          "SB1635"
+        ]
+      }
+    },
+    {
+      "query": "Dementia Prevention and Research Institute of Texas",
+      "kind": "exact",
+      "expected": [
+        "SB5"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 41,
+        "top": [
+          "HB5",
+          "SB5",
+          "HB3828",
+          "HB1302",
+          "SB998",
+          "SB2796"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 330,
+        "top": [
+          "HB1302",
+          "SB998",
+          "SB5",
+          "HB5",
+          "HB4469",
+          null
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.333,
+        "ms": 245,
+        "top": [
+          "HB1302",
+          "HB5",
+          "SB5",
+          "SB998",
+          "HB3828",
+          "HB4469"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 361,
+        "top": [
+          "SB5",
+          "HB5",
+          "HB1302",
+          "SB998",
+          "HB3376",
+          "SB1536"
+        ]
+      }
+    },
+    {
+      "query": "Employees Retirement System law enforcement custodial officers service retirement",
+      "kind": "exact",
+      "expected": [
+        "SB1737"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 77,
+        "top": [
+          "HB4537",
+          "SB1737",
+          "SB1115",
+          "HB4029",
+          "HB3521",
+          "SB1738"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 183,
+        "top": [
+          "SB1737",
+          "HB4537",
+          "HB4029",
+          "HB4534",
+          "SB1737",
+          "SB1737"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 278,
+        "top": [
+          "HB4537",
+          "SB1737",
+          "HB4029",
+          "SB1115",
+          "HB4534",
+          "HB3521"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 250,
+        "top": [
+          "SB1737",
+          "SB1737",
+          "HB4537",
+          "HB3280",
+          "HB3521",
+          "HB4144"
+        ]
+      }
+    },
+    {
+      "query": "Texas Armed Services Scholarship Program",
+      "kind": "exact",
+      "expected": [
+        "HB300"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 42,
+        "top": [
+          "HB300",
+          "HB3938",
+          "HB984",
+          "SB186",
+          "HB3894",
+          "HB462"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 0.5,
+        "ms": 192,
+        "top": [
+          "SB158",
+          "HB300",
+          "SB895",
+          "SB186",
+          "SB2055",
+          null
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 243,
+        "top": [
+          "HB300",
+          "SB186",
+          "SB683",
+          "SB1835",
+          "SB2055",
+          "SB1419"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 284,
+        "top": [
+          "HB300",
+          "HB300",
+          "SB1134",
+          "SB683",
+          "HB4319",
+          "SB1835"
+        ]
+      }
+    },
+    {
+      "query": "diesel fuel tax auxiliary power units refund",
+      "kind": "exact",
+      "expected": [
+        "SB771"
+      ],
+      "keyword": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 42,
+        "top": [
+          "SB771",
+          "SB771",
+          "SB771",
+          "HB1109",
+          "HB1109",
+          "HB326"
+        ]
+      },
+      "vector": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 294,
+        "top": [
+          "SB771",
+          "SB771",
+          "SB771",
+          "HB1109",
+          "HB1109",
+          "HB1109"
+        ]
+      },
+      "hybrid": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 222,
+        "top": [
+          "SB771",
+          "SB771",
+          "SB771",
+          "HB1109",
+          "HB1109",
+          "HB326"
+        ]
+      },
+      "hybrid_semantic": {
+        "hit": true,
+        "rr": 1.0,
+        "ms": 336,
+        "top": [
+          "SB771",
+          "SB771",
+          "SB771",
+          "HB1109",
+          "HB1109",
+          "HB1109"
+        ]
+      }
+    }
+  ]
+}

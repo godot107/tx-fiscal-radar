@@ -1,0 +1,44 @@
+{
+  "name": "tr_daily",
+  "properties": {
+    "description": "Daily 11:30 PM Central: the change manifest (history_periodic.xml) lists today's changes and resets after midnight, so the incremental must run before then.",
+    "runtimeState": "Stopped",
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+      "recurrence": {
+        "frequency": "Week",
+        "interval": 1,
+        "startTime": "2026-11-11T00:00:00",
+        "timeZone": "Central Standard Time",
+        "schedule": {
+          "hours": [
+            23
+          ],
+          "minutes": [
+            30
+          ],
+          "weekDays": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        }
+      }
+    },
+    "pipelines": [
+      {
+        "pipelineReference": {
+          "referenceName": "pl_daily",
+          "type": "PipelineReference"
+        },
+        "parameters": {
+          "mode": "daily"
+        }
+      }
+    ]
+  }
+}

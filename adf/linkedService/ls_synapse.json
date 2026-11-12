@@ -1,0 +1,12 @@
+{
+  "name": "ls_synapse",
+  "properties": {
+    "description": "Synapse workspace artifacts (notebooks run on the auto-pausing Spark pool). Auth: factory managed identity.",
+    "type": "AzureSynapseArtifacts",
+    "typeProperties": {
+      "endpoint": "${SYNAPSE_DEV}",
+      "authentication": "MSI",
+      "workspaceResourceId": "${SYNAPSE_RESOURCE_ID}"
+    }
+  }
+}

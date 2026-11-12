@@ -1,0 +1,59 @@
+agency_name	attributed_cost_2yr	fy2024_spend	load_pct_of_spend	new_fte	shared_bills	ai_rows_needing_review
+COMPTROLLER OF PUBLIC ACCOUNTS	304983030.0	405648076.66	37.59	12.0	219	51
+DEPARTMENT OF INFORMATION RESOURCES	154719753.0	776958713.5899999	9.96	139.0	24	5
+TEXAS ANIMAL HEALTH COMMISSION	3890748.0	22117928.49	8.80	5.0	2	0
+OFFICE OF COURT ADMINISTRATION	21000295.0	119752352.34999998	8.77		162	19
+PUBLIC UTILITY COMMISSION OF TEXAS	10010339.0	59500661.31	8.41	28.5	13	12
+STATE OFFICE OF ADMINISTRATIVE HEARINGS	1592904.0	13877010.96	5.74		11	0
+
+enacted_with_cost	cost	rev_loss	fte	undet	grows
+114	16849356156.0	2197705442.0	808.0	27	4
+
+bill_id	c	cost_2yr	gr_cost_outyears
+89R:SB2206	Relating to a franchise tax credit for, and the application 	0.0	1768100000.0
+89R:SB1379	Relating to increasing the criminal penalties for forgery.	-158250.0	57871909.0
+89R:SB1490	Relating to adult high school charter program funding.	20408072.0	56540292.0
+89R:HB2517	Relating to the applicability of premium and maintenance tax	0.0	54528000.0
+89R:SB1021	Relating to changing the eligibility for community supervisi	-135428.0	25654238.0
+
+bill_id	status	first_version	first_cost_2yr	latest_version	latest_cost_2yr	change_pct
+89R:HB500	enacted	I	10053768569.0	F	13187220532.0	-31.2
+89R:SB4	enacted	I	1035602146.0	F	2743461146.0	-164.9
+89R:HB1868	enacted	I	1105465895.0	E	-0.0	100.0
+89R:HB2	enacted	I	7568572060.0	F	8381506751.0	-10.7
+89R:HB9	enacted	I	566354000.0	F	193504000.0	65.8
+
+n	moved_25pct
+999	49
+
+session_code	day_of_prefiling	filed_cumulative
+89R	0	1384
+89R	1	1476
+90R	0	1179
+
+agency_subject	bills
+HEALTH & HUMAN SERVICES COMMISSION	48
+COMPTROLLER OF PUBLIC ACCOUNTS	28
+EDUCATION AGENCY, TEXAS	24
+EDUCATION, COMMISSIONER OF	21
+HIGHER EDUCATION COORDINATING BOARD, TEXAS	19
+ENVIRONMENTAL QUALITY, TEXAS COMMISSION ON	16
+
+session_code	chamber	committee	referred	still_in_committee
+89R	House	Public Education	679	556
+89R	House	State Affairs	578	405
+89R	Senate	Business & Commerce	573	341
+89R	Senate	Health & Human Services	537	324
+89R	Senate	State Affairs	530	311
+
+mandate_type	n
+new_program	133
+reporting	92
+rulemaking	44
+other	39
+funding_formula	29
+enforcement	25
+licensing_fee	21
+it_system	19
+study	10
+

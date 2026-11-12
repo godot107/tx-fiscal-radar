@@ -1,0 +1,619 @@
+{
+  "name": "pl_ingest_source",
+  "properties": {
+    "description": "Ingest one control-table source into bronze and log it (watermark advances only on success). Called by pl_ingest.",
+    "folder": {
+      "name": "ingest"
+    },
+    "parameters": {
+      "parent_run_id": {
+        "type": "string"
+      },
+      "source_id": {
+        "type": "int"
+      },
+      "source_name": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "session_code": {
+        "type": "string"
+      },
+      "src_path": {
+        "type": "string"
+      },
+      "sink_path": {
+        "type": "string"
+      },
+      "file_pattern": {
+        "type": "string"
+      },
+      "recursive": {
+        "type": "int"
+      },
+      "watermark_utc": {
+        "type": "string"
+      },
+      "window_end_utc": {
+        "type": "string"
+      }
+    },
+    "activities": [
+      {
+        "name": "route_by_kind",
+        "type": "Switch",
+        "typeProperties": {
+          "on": {
+            "value": "@pipeline().parameters.kind",
+            "type": "Expression"
+          },
+          "cases": [
+            {
+              "value": "ftp",
+              "activities": [
+                {
+                  "name": "copy_ftp",
+                  "type": "Copy",
+                  "policy": {
+                    "timeout": "0.02:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 120
+                  },
+                  "description": "Full copy of one FTP folder (backfill or weekly reconcile).",
+                  "dependsOn": [],
+                  "inputs": [
+                    {
+                      "referenceName": "ds_ftp_folder",
+                      "type": "DatasetReference",
+                      "parameters": {
+                        "folder": {
+                          "value": "@pipeline().parameters.src_path",
+                          "type": "Expression"
+                        }
+                      }
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "referenceName": "ds_lake_binary",
+                      "type": "DatasetReference",
+                      "parameters": {
+                        "container": "bronze",
+                        "folder": {
+                          "value": "@pipeline().parameters.sink_path",
+                          "type": "Expression"
+                        },
+                        "file": ""
+                      }
+                    }
+                  ],
+                  "typeProperties": {
+                    "source": {
+                      "type": "BinarySource",
+                      "storeSettings": {
+                        "type": "FtpReadSettings",
+                        "maxConcurrentConnections": 2,
+                        "recursive": {
+                          "value": "@equals(pipeline().parameters.recursive, 1)",
+                          "type": "Expression"
+                        },
+                        "wildcardFileName": {
+                          "value": "@pipeline().parameters.file_pattern",
+                          "type": "Expression"
+                        },
+                        "useBinaryTransfer": true,
+                        "disableChunking": false
+                      }
+                    },
+                    "sink": {
+                      "type": "BinarySink",
+                      "storeSettings": {
+                        "type": "AzureBlobFSWriteSettings",
+                        "copyBehavior": "PreserveHierarchy"
+                      }
+                    },
+                    "enableStaging": false,
+                    "dataIntegrationUnits": 2
+                  }
+                },
+                {
+                  "name": "log_ok_ftp",
+                  "type": "SqlServerStoredProcedure",
+                  "dependsOn": [
+                    {
+                      "activity": "copy_ftp",
+                      "dependencyConditions": [
+                        "Succeeded"
+                      ]
+                    }
+                  ],
+                  "policy": {
+                    "timeout": "0.00:10:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 60
+                  },
+                  "linkedServiceName": {
+                    "referenceName": "ls_sql",
+                    "type": "LinkedServiceReference"
+                  },
+                  "typeProperties": {
+                    "storedProcedureName": "ctl.usp_log_ingest",
+                    "storedProcedureParameters": {
+                      "pipeline_run_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.parent_run_id",
+                          "type": "Expression"
+                        },
+                        "type": "String"
+                      },
+                      "source_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.source_id",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "window_start_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.watermark_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "window_end_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.window_end_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "status": {
+                        "value": "Succeeded",
+                        "type": "String"
+                      },
+                      "files_read": {
+                        "value": {
+                          "value": "@coalesce(activity('copy_ftp').output?.filesRead, 0)",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "files_written": {
+                        "value": {
+                          "value": "@coalesce(activity('copy_ftp').output?.filesWritten, 0)",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "bytes_read": {
+                        "value": {
+                          "value": "@coalesce(activity('copy_ftp').output?.dataRead, 0)",
+                          "type": "Expression"
+                        },
+                        "type": "Int64"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "log_fail_ftp",
+                  "type": "SqlServerStoredProcedure",
+                  "dependsOn": [
+                    {
+                      "activity": "copy_ftp",
+                      "dependencyConditions": [
+                        "Failed"
+                      ]
+                    }
+                  ],
+                  "policy": {
+                    "timeout": "0.00:10:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 60
+                  },
+                  "linkedServiceName": {
+                    "referenceName": "ls_sql",
+                    "type": "LinkedServiceReference"
+                  },
+                  "typeProperties": {
+                    "storedProcedureName": "ctl.usp_log_ingest",
+                    "storedProcedureParameters": {
+                      "pipeline_run_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.parent_run_id",
+                          "type": "Expression"
+                        },
+                        "type": "String"
+                      },
+                      "source_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.source_id",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "window_start_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.watermark_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "window_end_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.window_end_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "status": {
+                        "value": "Failed",
+                        "type": "String"
+                      },
+                      "error_message": {
+                        "value": {
+                          "value": "@string(activity('copy_ftp').error?.message)",
+                          "type": "Expression"
+                        },
+                        "type": "String"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "fail_ftp",
+                  "type": "Fail",
+                  "dependsOn": [
+                    {
+                      "activity": "log_fail_ftp",
+                      "dependencyConditions": [
+                        "Succeeded"
+                      ]
+                    }
+                  ],
+                  "typeProperties": {
+                    "message": {
+                      "value": "@concat(pipeline().parameters.source_name, ': ', string(activity('copy_ftp').error?.message))",
+                      "type": "Expression"
+                    },
+                    "errorCode": "INGEST_COPY_FAILED"
+                  }
+                }
+              ]
+            },
+            {
+              "value": "http",
+              "activities": [
+                {
+                  "name": "get_socrata_token",
+                  "type": "WebActivity",
+                  "description": "Optional Socrata app token from Key Vault (managed identity; output hidden from run history). 'anonymous' = none.",
+                  "policy": {
+                    "timeout": "0.00:05:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": true
+                  },
+                  "typeProperties": {
+                    "method": "GET",
+                    "url": "${KEY_VAULT_URI}secrets/socrata-app-token?api-version=7.4",
+                    "authentication": {
+                      "type": "MSI",
+                      "resource": "https://vault.azure.net"
+                    }
+                  }
+                },
+                {
+                  "name": "copy_http",
+                  "type": "Copy",
+                  "policy": {
+                    "timeout": "0.02:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 120,
+                    "secureInput": true
+                  },
+                  "description": "Full refresh of a Socrata dataset as one JSON file.",
+                  "dependsOn": [
+                    {
+                      "activity": "get_socrata_token",
+                      "dependencyConditions": [
+                        "Succeeded"
+                      ]
+                    }
+                  ],
+                  "inputs": [
+                    {
+                      "referenceName": "ds_http_file",
+                      "type": "DatasetReference",
+                      "parameters": {
+                        "relative_url": {
+                          "value": "@pipeline().parameters.src_path",
+                          "type": "Expression"
+                        }
+                      }
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "referenceName": "ds_lake_binary",
+                      "type": "DatasetReference",
+                      "parameters": {
+                        "container": "bronze",
+                        "folder": {
+                          "value": "@pipeline().parameters.sink_path",
+                          "type": "Expression"
+                        },
+                        "file": "data.json"
+                      }
+                    }
+                  ],
+                  "typeProperties": {
+                    "source": {
+                      "type": "BinarySource",
+                      "storeSettings": {
+                        "type": "HttpReadSettings",
+                        "requestMethod": "GET",
+                        "requestTimeout": "00:05:00",
+                        "additionalHeaders": {
+                          "value": "@if(equals(activity('get_socrata_token').output.value, 'anonymous'), '', concat('X-App-Token: ', activity('get_socrata_token').output.value))",
+                          "type": "Expression"
+                        }
+                      }
+                    },
+                    "sink": {
+                      "type": "BinarySink",
+                      "storeSettings": {
+                        "type": "AzureBlobFSWriteSettings"
+                      }
+                    },
+                    "enableStaging": false
+                  }
+                },
+                {
+                  "name": "log_ok_http",
+                  "type": "SqlServerStoredProcedure",
+                  "dependsOn": [
+                    {
+                      "activity": "copy_http",
+                      "dependencyConditions": [
+                        "Succeeded"
+                      ]
+                    }
+                  ],
+                  "policy": {
+                    "timeout": "0.00:10:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 60
+                  },
+                  "linkedServiceName": {
+                    "referenceName": "ls_sql",
+                    "type": "LinkedServiceReference"
+                  },
+                  "typeProperties": {
+                    "storedProcedureName": "ctl.usp_log_ingest",
+                    "storedProcedureParameters": {
+                      "pipeline_run_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.parent_run_id",
+                          "type": "Expression"
+                        },
+                        "type": "String"
+                      },
+                      "source_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.source_id",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "window_start_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.watermark_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "window_end_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.window_end_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "status": {
+                        "value": "Succeeded",
+                        "type": "String"
+                      },
+                      "files_read": {
+                        "value": {
+                          "value": "@coalesce(activity('copy_http').output?.filesRead, 0)",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "files_written": {
+                        "value": {
+                          "value": "@coalesce(activity('copy_http').output?.filesWritten, 0)",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "bytes_read": {
+                        "value": {
+                          "value": "@coalesce(activity('copy_http').output?.dataRead, 0)",
+                          "type": "Expression"
+                        },
+                        "type": "Int64"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "log_fail_http",
+                  "type": "SqlServerStoredProcedure",
+                  "dependsOn": [
+                    {
+                      "activity": "copy_http",
+                      "dependencyConditions": [
+                        "Failed"
+                      ]
+                    }
+                  ],
+                  "policy": {
+                    "timeout": "0.00:10:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 60
+                  },
+                  "linkedServiceName": {
+                    "referenceName": "ls_sql",
+                    "type": "LinkedServiceReference"
+                  },
+                  "typeProperties": {
+                    "storedProcedureName": "ctl.usp_log_ingest",
+                    "storedProcedureParameters": {
+                      "pipeline_run_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.parent_run_id",
+                          "type": "Expression"
+                        },
+                        "type": "String"
+                      },
+                      "source_id": {
+                        "value": {
+                          "value": "@pipeline().parameters.source_id",
+                          "type": "Expression"
+                        },
+                        "type": "Int32"
+                      },
+                      "window_start_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.watermark_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "window_end_utc": {
+                        "value": {
+                          "value": "@pipeline().parameters.window_end_utc",
+                          "type": "Expression"
+                        },
+                        "type": "DateTime"
+                      },
+                      "status": {
+                        "value": "Failed",
+                        "type": "String"
+                      },
+                      "error_message": {
+                        "value": {
+                          "value": "@string(activity('copy_http').error?.message)",
+                          "type": "Expression"
+                        },
+                        "type": "String"
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "fail_http",
+                  "type": "Fail",
+                  "dependsOn": [
+                    {
+                      "activity": "log_fail_http",
+                      "dependencyConditions": [
+                        "Succeeded"
+                      ]
+                    }
+                  ],
+                  "typeProperties": {
+                    "message": {
+                      "value": "@concat(pipeline().parameters.source_name, ': ', string(activity('copy_http').error?.message))",
+                      "type": "Expression"
+                    },
+                    "errorCode": "INGEST_COPY_FAILED"
+                  }
+                }
+              ]
+            },
+            {
+              "value": "ftp_manifest",
+              "activities": [
+                {
+                  "name": "run_manifest",
+                  "type": "ExecutePipeline",
+                  "typeProperties": {
+                    "pipeline": {
+                      "referenceName": "pl_ingest_manifest",
+                      "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                      "parent_run_id": {
+                        "value": "@pipeline().parameters.parent_run_id",
+                        "type": "Expression"
+                      },
+                      "source_id": {
+                        "value": "@pipeline().parameters.source_id",
+                        "type": "Expression"
+                      },
+                      "source_name": {
+                        "value": "@pipeline().parameters.source_name",
+                        "type": "Expression"
+                      },
+                      "kind": {
+                        "value": "@pipeline().parameters.kind",
+                        "type": "Expression"
+                      },
+                      "session_code": {
+                        "value": "@pipeline().parameters.session_code",
+                        "type": "Expression"
+                      },
+                      "src_path": {
+                        "value": "@pipeline().parameters.src_path",
+                        "type": "Expression"
+                      },
+                      "sink_path": {
+                        "value": "@pipeline().parameters.sink_path",
+                        "type": "Expression"
+                      },
+                      "file_pattern": {
+                        "value": "@pipeline().parameters.file_pattern",
+                        "type": "Expression"
+                      },
+                      "recursive": {
+                        "value": "@pipeline().parameters.recursive",
+                        "type": "Expression"
+                      },
+                      "watermark_utc": {
+                        "value": "@pipeline().parameters.watermark_utc",
+                        "type": "Expression"
+                      },
+                      "window_end_utc": {
+                        "value": "@pipeline().parameters.window_end_utc",
+                        "type": "Expression"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "defaultActivities": [
+            {
+              "name": "unknown_kind",
+              "type": "Fail",
+              "typeProperties": {
+                "message": {
+                  "value": "@concat('unknown source kind: ', pipeline().parameters.kind)",
+                  "type": "Expression"
+                },
+                "errorCode": "BAD_KIND"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

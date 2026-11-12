@@ -1,0 +1,27 @@
+{
+ "started_utc": "2026-11-10T06:44:07+00:00",
+ "silver_watermark_in": "None",
+ "parsed": {
+  "bill": 368,
+  "bill_action": 2787,
+  "bill_subject": 2523,
+  "fiscal_note": 124,
+  "fiscal_note_agency": 343,
+  "fiscal_note_amount": 485,
+  "quarantine": 0
+ },
+ "spend": {
+  "agency_spend": "skipped: [PATH_NOT_FOUND] Path does not exist: dbfs:/Volumes/workspace/txfr/lake/bronze/comptroller/spend_by_county/*/data.json. SQLSTATE: 42K03\n\nJVM stacktrace:\norg.apache.spark.sql.AnalysisException\n\tat org."
+ },
+ "gold": {
+  "bill": 368,
+  "bill_action": 2787,
+  "bill_subject": 2523,
+  "fiscal_note_latest": 62,
+  "fiscal_note_version": 124,
+  "fiscal_note_drift": 62,
+  "fiscal_note_agency": 146,
+  "fiscal_note_year": 220,
+  "fiscal_note_text": 62
+ }
+}

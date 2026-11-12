@@ -1,0 +1,33 @@
+{
+ "started_utc": "2026-11-10T07:39:40+00:00",
+ "silver_watermark_in": "None",
+ "parsed": {
+  "bill": 10635,
+  "bill_action": 139178,
+  "bill_subject": 49948,
+  "fiscal_note": 7334,
+  "fiscal_note_agency": 17464,
+  "fiscal_note_amount": 19278,
+  "quarantine": 173
+ },
+ "spend": {
+  "agency_spend": 1979,
+  "check_vs_total_row": {
+   "total_row": 189933825064.91,
+   "agency_rows_sum": 189933825064.91,
+   "difference": -0.0
+  }
+ },
+ "gold": {
+  "bill": 10635,
+  "bill_action": 139178,
+  "bill_subject": 49948,
+  "fiscal_note_latest": 3795,
+  "fiscal_note_version": 7334,
+  "fiscal_note_drift": 3795,
+  "fiscal_note_agency": 8437,
+  "fiscal_note_year": 8773,
+  "fiscal_note_text": 3795,
+  "agency_spend": 1979
+ }
+}

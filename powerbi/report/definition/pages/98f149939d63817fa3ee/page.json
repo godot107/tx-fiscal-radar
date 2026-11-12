@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "98f149939d63817fa3ee",
+  "displayName": "Fiscal exposure",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

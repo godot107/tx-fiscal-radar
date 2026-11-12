@@ -1,0 +1,1770 @@
+{
+  "label": "tpm300",
+  "per_user": 6,
+  "stages": [
+    {
+      "users": 5,
+      "requests": 30,
+      "ok": 21,
+      "wall_seconds": 127.0,
+      "answers_per_min": 9.9,
+      "p50_s": 20.55,
+      "p95_s": 25.82,
+      "throttled_share": 0.3,
+      "error_share": 0.3,
+      "tokens_per_min": 40852,
+      "tokens_per_answer": 4117,
+      "errors": [
+        "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded toke"
+      ],
+      "raw": [
+        {
+          "status": 200,
+          "seconds": 20.62,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 17.99,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 21.17,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 18.92,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 21.74,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 268
+          },
+          "error": null,
+          "server_seconds": 19.44,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 22.56,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 198
+          },
+          "error": null,
+          "server_seconds": 20.23,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 25.82,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 23.25,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 16.44,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 181
+          },
+          "error": null,
+          "server_seconds": 14.17,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.42,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 4729,
+            "completion": 66
+          },
+          "error": null,
+          "server_seconds": 15.09,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 23.96,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 154
+          },
+          "error": null,
+          "server_seconds": 17.68,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 26.5,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 8595,
+            "completion": 289
+          },
+          "error": null,
+          "server_seconds": 25.33,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 22.56,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 423
+          },
+          "error": null,
+          "server_seconds": 20.93,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.77,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 130
+          },
+          "error": null,
+          "server_seconds": 12.45,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.58,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5225,
+            "completion": 420
+          },
+          "error": null,
+          "server_seconds": 17.16,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.09,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 7.9,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.1,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 181
+          },
+          "error": null,
+          "server_seconds": 15.8,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.83,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.64,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.77,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 262
+          },
+          "error": null,
+          "server_seconds": 16.63,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.95,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.74,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.56,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 179
+          },
+          "error": null,
+          "server_seconds": 15.09,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.47,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.3,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 24.59,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 2282,
+            "completion": 23
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 19.93,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 20.71,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 2284,
+            "completion": 26
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 19.51,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.04,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 12.87,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 20.53,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 5930,
+            "completion": 48
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 19.33,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.68,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.51,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 20.13,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 5236,
+            "completion": 518
+          },
+          "error": null,
+          "server_seconds": 18.87,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.98,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 17.73,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 20.55,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 19.39,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 12.62,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.45,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 23.09,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 214
+          },
+          "error": null,
+          "server_seconds": 21.75,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 21.18,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 283
+          },
+          "error": null,
+          "server_seconds": 18.93,
+          "run_status": "RunStatus.COMPLETED"
+        }
+      ]
+    },
+    {
+      "users": 20,
+      "requests": 120,
+      "ok": 23,
+      "wall_seconds": 109.6,
+      "answers_per_min": 12.6,
+      "p50_s": 17.54,
+      "p95_s": 27.77,
+      "throttled_share": 0.808,
+      "error_share": 0.808,
+      "tokens_per_min": 14724,
+      "tokens_per_answer": 1169,
+      "errors": [
+        "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded toke"
+      ],
+      "raw": [
+        {
+          "status": 429,
+          "seconds": 10.81,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.48,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.68,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.33,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.79,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.51,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.42,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.12,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.68,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.34,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.77,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.38,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.57,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.24,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.71,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 2283,
+            "completion": 23
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.41,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 15.33,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 2281,
+            "completion": 17
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.97,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 15.95,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.04,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 15.99,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.09,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 16.23,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.22,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.68,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 14.31,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 17.56,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.65,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 17.85,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.05,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 19.85,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 2287,
+            "completion": 27
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 17.47,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 21.1,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 15.31,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 21.65,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 2284,
+            "completion": 25
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 19.36,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 10.1,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.43,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.89,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.54,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 10.08,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.62,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.21,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.1,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.31,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.93,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.68,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.24,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.99,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.67,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 27.77,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 21.83,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 28.37,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 22.58,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 15.01,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 2282,
+            "completion": 23
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.8,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 17.79,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 2282,
+            "completion": 61
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 17.41,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.78,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.57,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.12,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.63,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.59,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.66,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.32,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.08,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.05,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 12.11,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 12.52,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.32,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.77,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.6,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.35,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.29,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.48,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.77,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.2,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.97,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.56,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.63,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.32,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.75,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.1,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 16.9,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 10.08,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.9,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 24.12,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 22.96,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 11.86,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.66,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.98,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.83,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.99,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.96,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 12.09,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 10.98,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 17.18,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.72,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.01,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 11.76,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 12.28,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.16,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 18.86,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 2283,
+            "completion": 18
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 17.68,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 16.17,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 4745,
+            "completion": 149
+          },
+          "error": null,
+          "server_seconds": 14.87,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.88,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.67,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.52,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.8,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.0,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.06,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 16.74,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 15.59,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.45,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.18,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 17.52,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.35,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 18.32,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.47,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.15,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.34,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 17.93,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 16.69,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 20.83,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 2279,
+            "completion": 21
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 19.62,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.13,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.24,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.19,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.46,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.18,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.66,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 11.45,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 10.98,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 12.23,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.05,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.55,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.76,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.11,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.44,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.39,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.58,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.81,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.64,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 18.65,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 2281,
+            "completion": 17
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 17.4,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 24.43,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 4738,
+            "completion": 137
+          },
+          "error": null,
+          "server_seconds": 22.17,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.85,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.56,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.3,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.1,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.76,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.15,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.7,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.52,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.92,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.87,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 10.73,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.53,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 9.76,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.47,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.28,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.07,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 13.0,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.82,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.67,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.17,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 18.98,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 18.01,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 12.78,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.63,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 10.08,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.87,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 14.37,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 13.19,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 15.31,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 14.31,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.9,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 14.25,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 16.25,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 15.45,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 19.02,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 4914,
+            "completion": 113
+          },
+          "error": null,
+          "server_seconds": 18.2,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.16,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.87,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.72,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.51,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.63,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.82,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 21.46,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 2279,
+            "completion": 21
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 20.28,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.8,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 15.08,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 12.36,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.2,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.06,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 8.97,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 15.26,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 9.52,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 17.54,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 11.59,
+          "run_status": null
+        },
+        {
+          "status": 200,
+          "seconds": 19.3,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 18.12,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 16.6,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.09,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 18.79,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.63,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 12.54,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.68,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.58,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.36,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 20.35,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 2282,
+            "completion": 23
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.99,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 13.35,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 11.1,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 13.38,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 11.19,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 12.15,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 11.21,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 13.33,
+          "q": "How many House and Senate bills were enacted in the 2025 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 12.14,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.35,
+          "q": "Which enacted 2025 bills have costs that grow after 2026-27?",
+          "tokens": null,
+          "error": null,
+          "server_seconds": 16.15,
+          "run_status": null
+        },
+        {
+          "status": 429,
+          "seconds": 11.55,
+          "q": "How many bills have been filed so far for the 2027 regular session?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 10.63,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 21.79,
+          "q": "Which state agency carries the largest new two-year cost from enacted 2025 bills?",
+          "tokens": {
+            "prompt": 2283,
+            "completion": 23
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 19.33,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 14.87,
+          "q": "What is the status of HB 2 from the 2025 regular session and its two-year cost?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 13.68,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 11.34,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 9.12,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 15.95,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 0,
+            "completion": 0
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 14.76,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 429,
+          "seconds": 24.01,
+          "q": "Why does SB 2206 cost nothing in 2026-27 but more later?",
+          "tokens": {
+            "prompt": 5957,
+            "completion": 49
+          },
+          "error": "{'code': 'rate_limit_exceeded', 'message': 'Your requests to gpt-4.1-mini for gpt-4.1-mini in eastus2 have exceeded token rate limit.'}",
+          "server_seconds": 23.5,
+          "run_status": "RunStatus.FAILED"
+        },
+        {
+          "status": 200,
+          "seconds": 26.89,
+          "q": "Did the Legislature pass anything on school vouchers in 2025?",
+          "tokens": {
+            "prompt": 6281,
+            "completion": 240
+          },
+          "error": null,
+          "server_seconds": 25.68,
+          "run_status": "RunStatus.COMPLETED"
+        },
+        {
+          "status": 200,
+          "seconds": 17.85,
+          "q": "Which agencies face the largest new cost relative to their FY2024 spending?",
+          "tokens": {
+            "prompt": 5396,
+            "completion": 176
+          },
+          "error": null,
+          "server_seconds": 16.59,
+          "run_status": "RunStatus.COMPLETED"
+        }
+      ]
+    }
+  ]
+}

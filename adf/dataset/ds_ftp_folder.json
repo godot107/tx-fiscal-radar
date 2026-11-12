@@ -1,0 +1,11 @@
+{
+  "name": "ds_ftp_folder",
+  "properties": {
+    "linkedServiceName": { "referenceName": "ls_ftp_legis", "type": "LinkedServiceReference" },
+    "parameters": { "folder": { "type": "string" } },
+    "type": "Binary",
+    "typeProperties": {
+      "location": { "type": "FtpServerLocation", "folderPath": { "value": "@dataset().folder", "type": "Expression" } }
+    }
+  }
+}

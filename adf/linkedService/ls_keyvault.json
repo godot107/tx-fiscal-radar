@@ -1,0 +1,8 @@
+{
+  "name": "ls_keyvault",
+  "properties": {
+    "description": "Project Key Vault (RBAC). The factory has Key Vault Secrets User.",
+    "type": "AzureKeyVault",
+    "typeProperties": { "baseUrl": "${KEY_VAULT_URI}" }
+  }
+}

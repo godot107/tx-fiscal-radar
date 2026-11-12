@@ -1,0 +1,21 @@
+{
+  "bills": 198,
+  "bills_with_agency_amounts": 119,
+  "cost_rows": 1012,
+  "evidence_grounded_rate": 0.902,
+  "agency_listed_rate": 1.0,
+  "amount_stated_rate": 0.797,
+  "agency_named_rate": 0.609,
+  "reconcile_rate_bills_with_amounts": 0.58,
+  "known_answer_single_agency_bills": 42,
+  "known_answer_reconcile_rate": 0.738,
+  "rows_needing_review": 529,
+  "verified_rows": 483,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "calls": 198,
+    "cached": 198
+  },
+  "est_cost_usd": 0.0
+}

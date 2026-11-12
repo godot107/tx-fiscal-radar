@@ -1,0 +1,15 @@
+{
+  "name": "ds_ftp_xml",
+  "properties": {
+    "description": "An XML file on the Legislature FTP (the bill-history change manifest).",
+    "linkedServiceName": { "referenceName": "ls_ftp_legis", "type": "LinkedServiceReference" },
+    "parameters": { "folder": { "type": "string" }, "file": { "type": "string" } },
+    "type": "Xml",
+    "typeProperties": {
+      "location": { "type": "FtpServerLocation",
+        "folderPath": { "value": "@dataset().folder", "type": "Expression" },
+        "fileName": { "value": "@dataset().file", "type": "Expression" } },
+      "encodingName": "UTF-8"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ls_http_texas_open_data",
+  "properties": {
+    "description": "Texas Open Data Portal (Socrata) - Comptroller spending datasets.",
+    "type": "HttpServer",
+    "typeProperties": {
+      "url": "https://data.texas.gov/",
+      "enableServerCertificateValidation": true,
+      "authenticationType": "Anonymous"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ds_lake_binary",
+  "properties": {
+    "linkedServiceName": { "referenceName": "ls_lake", "type": "LinkedServiceReference" },
+    "parameters": {
+      "container": { "type": "string", "defaultValue": "bronze" },
+      "folder": { "type": "string" },
+      "file": { "type": "string", "defaultValue": "" }
+    },
+    "type": "Binary",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": { "value": "@dataset().container", "type": "Expression" },
+        "folderPath": { "value": "@dataset().folder", "type": "Expression" },
+        "fileName": { "value": "@if(empty(dataset().file), null, dataset().file)", "type": "Expression" }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "requests": 500,
+  "workers": 50,
+  "wall_seconds": 18.6,
+  "status_codes": {
+    "401": 500
+  },
+  "p50_ms": 1336,
+  "p95_ms": 5677
+}

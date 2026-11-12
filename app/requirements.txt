@@ -1,0 +1,12 @@
+# Function app runtime deps only (the full project's requirements.txt also has Spark, pandas, notebooks)
+azure-functions
+azure-identity>=1.17
+azure-ai-agents==1.1.0
+azure-ai-projects==1.0.0
+azure-search-documents>=11.6
+openai>=1.50
+mssql-python>=0.10
+requests>=2.32
+azure-data-tables>=12.5
+azure-storage-blob>=12.20
+pandas>=2.2   # Power BI refresh in the nightly maintenance job (txfr.powerbi.read_frames)

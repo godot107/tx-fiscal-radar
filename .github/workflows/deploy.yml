@@ -1,0 +1,35 @@
+# Deploy to dev from main through GitHub OIDC (workload identity federation: no client secret).
+# OFF until the repository variable DEPLOY_ENABLED is 'true' and the federated credential exists (docs/RUNBOOK.md).
+name: deploy
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [infra/**, adf/**, synapse/**, sql/**, src/txfr/**]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-dev:
+    if: vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v5
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Infrastructure (what-if, then deploy)
+        env:
+          OPERATOR_OBJECT_ID: ${{ vars.OPERATOR_OBJECT_ID }}
+          OPERATOR_LOGIN: ${{ vars.OPERATOR_LOGIN }}
+          CLIENT_IPS: '[]'
+        run: infra/up.sh --what-if && infra/up.sh
+      - name: Synapse (txfr.zip + notebooks)
+        run: synapse/deploy.sh
+      - name: Data Factory (pipelines; triggers keep their runtime state)
+        run: adf/deploy.sh

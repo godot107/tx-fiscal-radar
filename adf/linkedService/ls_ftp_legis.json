@@ -1,0 +1,14 @@
+{
+  "name": "ls_ftp_legis",
+  "properties": {
+    "description": "Texas Legislature Online bulk files (anonymous FTP, Texas Legislative Council). FTP only: TLC asks data services not to scrape capitol.texas.gov.",
+    "type": "FtpServer",
+    "typeProperties": {
+      "host": "ftp.legis.state.tx.us",
+      "port": 21,
+      "enableSsl": false,
+      "enableServerCertificateValidation": false,
+      "authenticationType": "Anonymous"
+    }
+  }
+}

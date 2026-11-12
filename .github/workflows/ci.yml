@@ -1,0 +1,56 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@v5          # local Spark for tests/test_spark_jobs.py
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Install
+        run: pip install -r requirements.txt -e .
+      - name: Tests (parsers, AI checks, Spark transform on real 89R files)
+        run: pytest -q
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Bicep compiles
+        run: az bicep build -f infra/main.bicep --stdout > /dev/null
+      - name: ADF JSON is generated from adf/_generate.py (no hand edits drift)
+        run: |
+          python3 adf/_generate.py
+          git diff --exit-code adf/
+      - name: ADF JSON parses
+        run: for f in adf/*/*.json; do python3 -m json.tool "$f" > /dev/null || exit 1; done
+      - name: Shell scripts
+        run: shellcheck -S warning infra/*.sh adf/deploy.sh synapse/deploy.sh tools/*.sh app/deploy.sh
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install scanners
+        run: pip install pip-audit detect-secrets
+      - name: Known-vulnerable dependencies (project + web app)
+        run: |
+          pip-audit -r requirements.txt
+          pip-audit -r app/requirements.txt
+      - name: No new secrets (GitHub secret scanning isn't available on this private repo)
+        run: git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline

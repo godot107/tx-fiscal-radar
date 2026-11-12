@@ -1,0 +1,149 @@
+{
+  "name": "pl_ingest",
+  "properties": {
+    "description": "Metadata-driven ingestion: ctl.usp_sources_due(mode) \u2192 pl_ingest_source per source (2 at a time).",
+    "folder": {
+      "name": "ingest"
+    },
+    "parameters": {
+      "mode": {
+        "type": "string",
+        "defaultValue": "daily"
+      }
+    },
+    "variables": {
+      "window_end_utc": {
+        "type": "String"
+      }
+    },
+    "activities": [
+      {
+        "name": "set_window_end",
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "window_end_utc",
+          "value": {
+            "value": "@formatDateTime(pipeline().TriggerTime, 'yyyy-MM-ddTHH:mm:ssZ')",
+            "type": "Expression"
+          }
+        }
+      },
+      {
+        "name": "lookup_sources",
+        "type": "Lookup",
+        "dependsOn": [
+          {
+            "activity": "set_window_end",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 3,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderStoredProcedureName": "ctl.usp_sources_due",
+            "storedProcedureParameters": {
+              "mode": {
+                "type": "String",
+                "value": {
+                  "value": "@pipeline().parameters.mode",
+                  "type": "Expression"
+                }
+              }
+            }
+          },
+          "dataset": {
+            "referenceName": "ds_sql",
+            "type": "DatasetReference"
+          },
+          "firstRowOnly": false
+        }
+      },
+      {
+        "name": "for_each_source",
+        "type": "ForEach",
+        "dependsOn": [
+          {
+            "activity": "lookup_sources",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@activity('lookup_sources').output.value",
+            "type": "Expression"
+          },
+          "isSequential": false,
+          "batchCount": 2,
+          "activities": [
+            {
+              "name": "ingest_one",
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "pl_ingest_source",
+                  "type": "PipelineReference"
+                },
+                "waitOnCompletion": true,
+                "parameters": {
+                  "parent_run_id": {
+                    "value": "@pipeline().RunId",
+                    "type": "Expression"
+                  },
+                  "source_id": {
+                    "value": "@item().source_id",
+                    "type": "Expression"
+                  },
+                  "source_name": {
+                    "value": "@item().source_name",
+                    "type": "Expression"
+                  },
+                  "kind": {
+                    "value": "@item().kind",
+                    "type": "Expression"
+                  },
+                  "session_code": {
+                    "value": "@item().session_code",
+                    "type": "Expression"
+                  },
+                  "src_path": {
+                    "value": "@item().src_path",
+                    "type": "Expression"
+                  },
+                  "sink_path": {
+                    "value": "@item().sink_path",
+                    "type": "Expression"
+                  },
+                  "file_pattern": {
+                    "value": "@item().file_pattern",
+                    "type": "Expression"
+                  },
+                  "recursive": {
+                    "value": "@item().recursive",
+                    "type": "Expression"
+                  },
+                  "watermark_utc": {
+                    "value": "@item().watermark_utc",
+                    "type": "Expression"
+                  },
+                  "window_end_utc": {
+                    "value": "@variables('window_end_utc')",
+                    "type": "Expression"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+[
+  {
+    "question": "Which state agency carries the largest new two-year cost from bills the 89th Legislature enacted?",
+    "status": "RunStatus.COMPLETED",
+    "answer": "The state agency with the largest new two-year cost from bills enacted by the 89th Legislature is the Comptroller of Public Accounts. The total attributed cost for this agency is approximately $14.17 billion for the 2026-27 biennium.\n\n- The direct cost is about $13.66 billion.\n- An additional AI-attributed cost is about $514 million.\n- The agency has 308 enacted bills contributing to this cost.\n- The new cost load is about 1747% of its FY2024 spending.\n- The agency is expected to add 12 new full-time equivalents (FTEs).\n\nSource: 89R session agency exposure data for Comptroller of Public Accounts (agency code 304).",
+    "tool_calls": [
+      {
+        "tool": "get_metrics",
+        "metric": "agency_exposure_top",
+        "top_n": 1,
+        "session_code": "89R"
+      }
+    ],
+    "error": null,
+    "tokens": {
+      "prompt": 2700,
+      "completion": 177
+    },
+    "pass": true,
+    "expected": [
+      "304",
+      "comptroller of public accounts"
+    ]
+  },
+  {
+    "question": "How many House and Senate bills were enacted in the 2025 regular session, and how many were vetoed?",
+    "status": "RunStatus.COMPLETED",
+    "answer": "In the 2025 regular session (89R), 607 House bills and 580 Senate bills were enacted. Additionally, 12 House bills and 14 Senate bills were vetoed. \n\n- Total House bills enacted: 607\n- Total Senate bills enacted: 580\n- Total House bills vetoed: 12\n- Total Senate bills vetoed: 14\n\nThese numbers reflect the final legislative actions for the session.",
+    "tool_calls": [
+      {
+        "tool": "get_metrics",
+        "metric": "session_funnel",
+        "session_code": "89R"
+      }
+    ],
+    "error": null,
+    "tokens": {
+      "prompt": 2696,
+      "completion": 113
+    },
+    "pass": true,
+    "expected": [
+      [
+        "1187",
+        "26"
+      ],
+      [
+        "607",
+        "580",
+        "12",
+        "14"
+      ]
+    ]
+  },
+  {
+    "question": "What is the status of HB 2 from the 2025 regular session, and what did its final fiscal note estimate?",
+    "status": "RunStatus.COMPLETED",
+    "answer": "HB 2 from the 2025 regular session is enacted and was signed into law on June 20, 2025. Its final fiscal note estimated a two-year cost of approximately $8.38 billion, with about $8.38 billion of that being General Revenue. The bill relates to public education and public school finance.\n\n- Status: Enacted\n- Signed date: June 20, 2025\n- Two-year cost: $8,382,738,104\n- General Revenue portion: $8,381,506,751\n- Number of agencies affected: 11\n\nSource: 89R HB 2 bill detail data.",
+    "tool_calls": [
+      {
+        "tool": "get_metrics",
+        "metric": "bill_detail",
+        "session_code": "89R",
+        "bill": "HB2"
+      }
+    ],
+    "error": null,
+    "tokens": {
+      "prompt": 2701,
+      "completion": 163
+    },
+    "pass": true,
+    "expected": [
+      "enacted",
+      "8.38"
+    ]
+  },
+  {
+    "question": "Which enacted bill from the 2025 regular session has the largest two-year cost?",
+    "status": "RunStatus.COMPLETED",
+    "answer": "The enacted bill from the 2025 regular session with the largest two-year cost is 89R HB 500. It relates to making supplemental appropriations and reductions in appropriations and giving direction and adjustment authority regarding appropriations. The two-year cost is approximately $13.19 billion, all from General Revenue.\n\n- Bill ID: 89R HB 500\n- Cost for 2026-27 biennium: $13,187,220,532 (General Revenue only)\n- Number of agencies affected: 1\n- No FTE information provided\n- No growth in cost projected beyond the biennium\n\nLet me know if you want details on the agency or specific appropriations in this bill.",
+    "tool_calls": [
+      {
+        "tool": "get_metrics",
+        "metric": "largest_enacted_costs",
+        "top_n": 1,
+        "session_code": "89R"
+      }
+    ],
+    "error": null,
+    "tokens": {
+      "prompt": 2657,
+      "completion": 175
+    },
+    "pass": true,
+    "expected": [
+      "HB ?500"
+    ]
+  },
+  {
+    "question": "Will the 2027 session raise the sales tax?",
+    "status": "RunStatus.COMPLETED",
+    "answer": "As of now, there is no filed bill in the 2027 session (90R) that explicitly raises the state sales tax rate. There are bills related to municipal sales and use taxes and repealing sales tax exemptions (e.g., HB325, HB750, HB851), but none propose an increase in the overall state sales tax rate.\n\n- HB325 relates to municipal sales and use tax for street maintenance.\n- HB750 and HB851 relate to repealing sales tax exemptions for data centers.\n- SB78 relates to converting municipal sales and use tax purposes.\n- HB230 relates to sales and use tax refunds for employers of apprentices.\n- No fiscal notes have been published yet for these bills.\n\nSources:\n- HB325: ftp://ftp.legis.state.tx.us/bills/90R/billhistory/house_bills/HB00300_HB00399/HB%20325.xml\n- HB750: ftp://ftp.legis.state.tx.us/bills/90R/billhistory/house_bills/HB00700_HB00799/HB%20750.xml\n- HB851: ftp://ftp.legis.state.tx.us/bills/90R/billhistory/house_bills/HB00800_HB00899/HB%20851.xml\n- SB78: ftp://ftp.legis.state.tx.us/bills/90R/billhistory/senate_bills/SB00001_SB00099/SB%2078.xml\n- HB230: ftp://ftp.legis.state.tx.us/bills/90R/billhistory/house_bills/HB00200_HB00299/HB%20230.xml",
+    "tool_calls": [
+      {
+        "tool": "search_session",
+        "query": "sales tax increase",
+        "session": "90R"
+      }
+    ],
+    "error": null,
+    "tokens": {
+      "prompt": 3670,
+      "completion": 366
+    },
+    "pass": false,
+    "expected": [
+      "can't predict",
+      "cannot predict",
+      "can not predict",
+      "unable to predict",
+      "not possible to predict",
+      "cannot say",
+      "can't say",
+      "cannot know",
+      "no way to know"
+    ]
+  }
+]

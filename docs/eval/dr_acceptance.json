@@ -1,0 +1,190 @@
+{
+  "run_utc": "2026-11-10T21:53:21Z",
+  "tests": [
+    {
+      "id": "TC-01",
+      "requirement": "Lake (recovery source) is geo-replicated; RPO \u2264 15 min",
+      "procedure": "Read the storage account's geo-replication status and last sync time",
+      "expected": "SKU *GRS, status Live, lag \u2264 900 s, failover available",
+      "actual": "Standard_GRS centralus\u2192eastus2, status Live, lag 286 s, canFailover True",
+      "seconds": 286.479486,
+      "pass": true,
+      "utc": "2026-11-10T21:08:08Z",
+      "evidence": {
+        "geo": {
+          "canFailover": true,
+          "canPlannedFailover": true,
+          "lastSyncTime": "2026-11-10T21:03:22+00:00",
+          "postFailoverRedundancy": "Standard_LRS",
+          "postPlannedFailoverRedundancy": "Standard_GRS",
+          "status": "Live"
+        }
+      }
+    },
+    {
+      "id": "TC-02",
+      "requirement": "Non-reproducible AI extraction record is in geo-redundant storage",
+      "procedure": "Compare data/ai_cache with lake backup/ai_cache",
+      "expected": "every local file present in the lake",
+      "actual": "210 local, 210 in lake, 0 missing",
+      "seconds": null,
+      "pass": true,
+      "utc": "2026-11-10T21:08:12Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-03",
+      "requirement": "Model/agent region outage \u2192 answers continue from the DR region (automatic)",
+      "procedure": "Set TXFR_SIMULATE_PRIMARY_DOWN=1 on the primary app; ask; remove the flag",
+      "expected": "HTTP 200, guard.failover.to = dr, answer correct",
+      "actual": "answered from dr in 13.84 s (request 20.86 s): The Texas Education Agency has the largest new two-year cost from enacted 2025 bills, with",
+      "seconds": 13.84,
+      "pass": true,
+      "utc": "2026-11-10T21:10:30Z",
+      "evidence": {
+        "failover": {
+          "to": "dr",
+          "reason": "ConnectionError: simulated primary region outage (drill)",
+          "seconds_to_answer": 13.84
+        },
+        "answer": "The Texas Education Agency has the largest new two-year cost from enacted 2025 bills, with a total attributed cost of approximately $904.5 million for the 2026-27 biennium. This includes $507.2 million in direct costs and $397.2 million in AI-attributed costs. The agency has 5 new full-time equivalent positions added and this cost represents about 1.07% of its FY2024 spending.\n\nSource: Agency expo"
+      }
+    },
+    {
+      "id": "TC-04",
+      "requirement": "Vector index lost \u2192 search degrades to the keyword index",
+      "procedure": "Point search at a missing vector index",
+      "expected": "search_mode keyword_fallback, results returned",
+      "actual": "search_mode keyword_fallback, 6 results",
+      "seconds": null,
+      "pass": true,
+      "utc": "2026-11-10T21:08:30Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-05",
+      "requirement": "Search service lost \u2192 metrics-only answers with an explicit notice",
+      "procedure": "Point search at a non-existent service",
+      "expected": "degraded=true, empty results, notice for the model",
+      "actual": "search_mode unavailable, degraded True",
+      "seconds": null,
+      "pass": true,
+      "utc": "2026-11-10T21:08:30Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-06",
+      "requirement": "DR app tier can be rebuilt from code in another region",
+      "procedure": "infra/dr_up.sh from an empty RG in westus3 (109 s) + app/deploy.sh dr incl. authenticated smoke test (138 s)",
+      "expected": "completes and passes its smoke test",
+      "actual": "247 s: infra/dr_up.sh from an empty RG in westus3 (109 s) + app/deploy.sh dr incl. authenticated smoke test (138 s)",
+      "seconds": 247.0,
+      "pass": true,
+      "utc": "2026-11-10T21:08:05Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-07",
+      "requirement": "DR app (West US 3) serves correct answers end to end",
+      "procedure": "Ask the DR app URL a question with a known answer",
+      "expected": "HTTP 200, 1,187 enacted (607 HB + 580 SB)",
+      "actual": "HTTP 200, RunStatus.COMPLETED, 24.45 s: In the 2025 regular session (89R), the number of bills enacted were:\n- House Bills (HB): 6",
+      "seconds": 24.45,
+      "pass": true,
+      "utc": "2026-11-10T21:08:55Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-08",
+      "requirement": "Warehouse recoverable to a point in time; reconciliation holds on the copy",
+      "procedure": "az sql db restore to 2026-11-10T20:46:07Z as a new Basic-tier DB; restored copy 10,635 bills, 1213 = 1213; copy deleted",
+      "expected": "completes and passes its smoke test",
+      "actual": "3361 s: az sql db restore to 2026-11-10T20:46:07Z as a new Basic-tier DB; restored copy 10,635 bills, 1213 = 1213; copy deleted",
+      "seconds": 3361.0,
+      "pass": true,
+      "utc": "2026-11-10T21:53:21Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-09",
+      "requirement": "Search index can be rebuilt from source data",
+      "procedure": "deleted the keyword index; python -m txfr.search_index rebuilt 11,224 docs from SQL + lake",
+      "expected": "completes and passes its smoke test",
+      "actual": "37 s: deleted the keyword index; python -m txfr.search_index rebuilt 11,224 docs from SQL + lake",
+      "seconds": 37.0,
+      "pass": true,
+      "utc": "2026-11-10T21:08:05Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-10",
+      "requirement": "DR app enforces the same sign-in as primary",
+      "procedure": "GET /api/health without and with a token",
+      "expected": "401 without, 200 with",
+      "actual": "401 without, 200 with",
+      "seconds": null,
+      "pass": true,
+      "utc": "2026-11-10T21:08:57Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-11",
+      "requirement": "Guardrails are identical in the DR region (request screen + RAI policy)",
+      "procedure": "Send a public-trust attack to the DR app",
+      "expected": "refused_by_policy (election_misinformation)",
+      "actual": "HTTP 200, refused_by_policy, election_misinformation",
+      "seconds": null,
+      "pass": true,
+      "utc": "2026-11-10T21:09:00Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-12",
+      "requirement": "Both regions report into one monitoring workspace",
+      "procedure": "Count telemetry by app role, last 2 h",
+      "expected": "rows from the primary and the DR app",
+      "actual": "func-txfr-<suffix>: 7255, func-txfr-dr-<suffix>: 182",
+      "seconds": null,
+      "pass": true,
+      "utc": "2026-11-10T21:09:04Z",
+      "evidence": null
+    },
+    {
+      "id": "TC-13",
+      "requirement": "Warehouse rebuilt from the geo-redundant lake (primary recovery path); reconciliation holds",
+      "procedure": "tools/adf_run.sh pl_load_sql reloaded the star schema from gold Parquet; dw.v_data_quality 1213 = 1213 afterwards",
+      "expected": "completes and passes its smoke test",
+      "actual": "157 s: tools/adf_run.sh pl_load_sql reloaded the star schema from gold Parquet; dw.v_data_quality 1213 = 1213 afterwards",
+      "seconds": 157.0,
+      "pass": true,
+      "utc": "2026-11-10T21:18:29Z",
+      "evidence": null
+    }
+  ],
+  "recovery_times": {
+    "Model region outage \u2192 DR answers (TC-03)": {
+      "measured_s": 14,
+      "target_s": 900
+    },
+    "Search service lost \u2192 degraded (TC-05)": {
+      "measured_s": 0,
+      "target_s": 900
+    },
+    "DR app tier rebuilt from code (TC-06)": {
+      "measured_s": 247,
+      "target_s": 900
+    },
+    "Keyword index rebuilt (TC-09)": {
+      "measured_s": 37,
+      "target_s": 14400
+    },
+    "Warehouse rebuilt from lake (TC-13)": {
+      "measured_s": 157,
+      "target_s": 14400
+    },
+    "Warehouse point-in-time restore (TC-08)": {
+      "measured_s": 3361,
+      "target_s": 14400
+    }
+  }
+}

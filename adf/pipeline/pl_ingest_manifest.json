@@ -1,0 +1,296 @@
+{
+  "name": "pl_ingest_manifest",
+  "properties": {
+    "description": "Daily incremental for a live session (kind ftp_manifest): empty manifest \u2192 log no change; otherwise pl_manifest_apply.",
+    "folder": {
+      "name": "ingest"
+    },
+    "parameters": {
+      "parent_run_id": {
+        "type": "string"
+      },
+      "source_id": {
+        "type": "int"
+      },
+      "source_name": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "session_code": {
+        "type": "string"
+      },
+      "src_path": {
+        "type": "string"
+      },
+      "sink_path": {
+        "type": "string"
+      },
+      "file_pattern": {
+        "type": "string"
+      },
+      "recursive": {
+        "type": "int"
+      },
+      "watermark_utc": {
+        "type": "string"
+      },
+      "window_end_utc": {
+        "type": "string"
+      }
+    },
+    "activities": [
+      {
+        "name": "manifest_size",
+        "type": "GetMetadata",
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "dataset": {
+            "referenceName": "ds_ftp_file",
+            "type": "DatasetReference",
+            "parameters": {
+              "folder": {
+                "value": "@pipeline().parameters.src_path",
+                "type": "Expression"
+              },
+              "file": "history_periodic.xml"
+            }
+          },
+          "fieldList": [
+            "size"
+          ],
+          "storeSettings": {
+            "type": "FtpReadSettings",
+            "useBinaryTransfer": true
+          },
+          "formatSettings": {
+            "type": "BinaryReadSettings"
+          }
+        }
+      },
+      {
+        "name": "if_entries",
+        "type": "IfCondition",
+        "dependsOn": [
+          {
+            "activity": "manifest_size",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "expression": {
+            "value": "@greater(activity('manifest_size').output.size, 100)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "name": "apply_manifest",
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "pl_manifest_apply",
+                  "type": "PipelineReference"
+                },
+                "waitOnCompletion": true,
+                "parameters": {
+                  "parent_run_id": {
+                    "value": "@pipeline().parameters.parent_run_id",
+                    "type": "Expression"
+                  },
+                  "source_id": {
+                    "value": "@pipeline().parameters.source_id",
+                    "type": "Expression"
+                  },
+                  "source_name": {
+                    "value": "@pipeline().parameters.source_name",
+                    "type": "Expression"
+                  },
+                  "kind": {
+                    "value": "@pipeline().parameters.kind",
+                    "type": "Expression"
+                  },
+                  "session_code": {
+                    "value": "@pipeline().parameters.session_code",
+                    "type": "Expression"
+                  },
+                  "src_path": {
+                    "value": "@pipeline().parameters.src_path",
+                    "type": "Expression"
+                  },
+                  "sink_path": {
+                    "value": "@pipeline().parameters.sink_path",
+                    "type": "Expression"
+                  },
+                  "file_pattern": {
+                    "value": "@pipeline().parameters.file_pattern",
+                    "type": "Expression"
+                  },
+                  "recursive": {
+                    "value": "@pipeline().parameters.recursive",
+                    "type": "Expression"
+                  },
+                  "watermark_utc": {
+                    "value": "@pipeline().parameters.watermark_utc",
+                    "type": "Expression"
+                  },
+                  "window_end_utc": {
+                    "value": "@pipeline().parameters.window_end_utc",
+                    "type": "Expression"
+                  }
+                }
+              }
+            }
+          ],
+          "ifFalseActivities": [
+            {
+              "name": "log_no_change",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 60
+              },
+              "linkedServiceName": {
+                "referenceName": "ls_sql",
+                "type": "LinkedServiceReference"
+              },
+              "typeProperties": {
+                "storedProcedureName": "ctl.usp_log_ingest",
+                "storedProcedureParameters": {
+                  "pipeline_run_id": {
+                    "value": {
+                      "value": "@pipeline().parameters.parent_run_id",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "source_id": {
+                    "value": {
+                      "value": "@pipeline().parameters.source_id",
+                      "type": "Expression"
+                    },
+                    "type": "Int32"
+                  },
+                  "window_start_utc": {
+                    "value": {
+                      "value": "@pipeline().parameters.watermark_utc",
+                      "type": "Expression"
+                    },
+                    "type": "DateTime"
+                  },
+                  "window_end_utc": {
+                    "value": {
+                      "value": "@pipeline().parameters.watermark_utc",
+                      "type": "Expression"
+                    },
+                    "type": "DateTime"
+                  },
+                  "status": {
+                    "value": "Succeeded",
+                    "type": "String"
+                  },
+                  "files_read": {
+                    "value": "0",
+                    "type": "Int32"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "log_fail_meta",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [
+          {
+            "activity": "manifest_size",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_sql",
+          "type": "LinkedServiceReference"
+        },
+        "typeProperties": {
+          "storedProcedureName": "ctl.usp_log_ingest",
+          "storedProcedureParameters": {
+            "pipeline_run_id": {
+              "value": {
+                "value": "@pipeline().parameters.parent_run_id",
+                "type": "Expression"
+              },
+              "type": "String"
+            },
+            "source_id": {
+              "value": {
+                "value": "@pipeline().parameters.source_id",
+                "type": "Expression"
+              },
+              "type": "Int32"
+            },
+            "window_start_utc": {
+              "value": {
+                "value": "@pipeline().parameters.watermark_utc",
+                "type": "Expression"
+              },
+              "type": "DateTime"
+            },
+            "window_end_utc": {
+              "value": {
+                "value": "@pipeline().parameters.watermark_utc",
+                "type": "Expression"
+              },
+              "type": "DateTime"
+            },
+            "status": {
+              "value": "Failed",
+              "type": "String"
+            },
+            "error_message": {
+              "value": {
+                "value": "@string(activity('manifest_size').error?.message)",
+                "type": "Expression"
+              },
+              "type": "String"
+            }
+          }
+        }
+      },
+      {
+        "name": "fail_meta",
+        "type": "Fail",
+        "dependsOn": [
+          {
+            "activity": "log_fail_meta",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "message": {
+            "value": "@concat(pipeline().parameters.source_name, ': manifest unreadable')",
+            "type": "Expression"
+          },
+          "errorCode": "INGEST_MANIFEST_FAILED"
+        }
+      }
+    ]
+  }
+}

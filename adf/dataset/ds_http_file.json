@@ -1,0 +1,11 @@
+{
+  "name": "ds_http_file",
+  "properties": {
+    "linkedServiceName": { "referenceName": "ls_http_texas_open_data", "type": "LinkedServiceReference" },
+    "parameters": { "relative_url": { "type": "string" } },
+    "type": "Binary",
+    "typeProperties": {
+      "location": { "type": "HttpServerLocation", "relativeUrl": { "value": "@dataset().relative_url", "type": "Expression" } }
+    }
+  }
+}

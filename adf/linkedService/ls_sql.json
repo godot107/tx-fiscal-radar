@@ -1,0 +1,10 @@
+{
+  "name": "ls_sql",
+  "properties": {
+    "description": "Azure SQL serving database. Entra-only server; the factory connects as its managed identity (contained database user).",
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=60;Data Source=${SQL_SERVER};Initial Catalog=${SQL_DATABASE}"
+    }
+  }
+}

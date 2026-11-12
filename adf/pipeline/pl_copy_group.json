@@ -1,0 +1,197 @@
+{
+  "name": "pl_copy_group",
+  "properties": {
+    "description": "Re-copy one 100-bill folder: bill history and (if published yet) fiscal notes.",
+    "folder": {
+      "name": "ingest"
+    },
+    "parameters": {
+      "session_code": {
+        "type": "string"
+      },
+      "chamber_folder": {
+        "type": "string"
+      },
+      "group_folder": {
+        "type": "string"
+      }
+    },
+    "activities": [
+      {
+        "name": "copy_history",
+        "type": "Copy",
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 120
+        },
+        "description": "",
+        "dependsOn": [],
+        "inputs": [
+          {
+            "referenceName": "ds_ftp_folder",
+            "type": "DatasetReference",
+            "parameters": {
+              "folder": {
+                "value": "@concat('bills/', pipeline().parameters.session_code, '/billhistory/', pipeline().parameters.chamber_folder, '/', pipeline().parameters.group_folder)",
+                "type": "Expression"
+              }
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_lake_binary",
+            "type": "DatasetReference",
+            "parameters": {
+              "container": "bronze",
+              "folder": {
+                "value": "@concat('legis/', pipeline().parameters.session_code, '/billhistory/', pipeline().parameters.chamber_folder, '/', pipeline().parameters.group_folder)",
+                "type": "Expression"
+              },
+              "file": ""
+            }
+          }
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "BinarySource",
+            "storeSettings": {
+              "type": "FtpReadSettings",
+              "maxConcurrentConnections": 2,
+              "recursive": {
+                "value": "@bool(false)",
+                "type": "Expression"
+              },
+              "wildcardFileName": "*",
+              "useBinaryTransfer": true,
+              "disableChunking": false
+            }
+          },
+          "sink": {
+            "type": "BinarySink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            }
+          },
+          "enableStaging": false,
+          "dataIntegrationUnits": 2
+        }
+      },
+      {
+        "name": "notes_exist",
+        "type": "GetMetadata",
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "dataset": {
+            "referenceName": "ds_ftp_folder",
+            "type": "DatasetReference",
+            "parameters": {
+              "folder": {
+                "value": "@concat('bills/', pipeline().parameters.session_code, '/fiscalnotes/html/', pipeline().parameters.chamber_folder, '/', pipeline().parameters.group_folder)",
+                "type": "Expression"
+              }
+            }
+          },
+          "fieldList": [
+            "exists"
+          ],
+          "storeSettings": {
+            "type": "FtpReadSettings",
+            "useBinaryTransfer": true
+          },
+          "formatSettings": {
+            "type": "BinaryReadSettings"
+          }
+        }
+      },
+      {
+        "name": "if_notes",
+        "type": "IfCondition",
+        "dependsOn": [
+          {
+            "activity": "notes_exist",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "expression": {
+            "value": "@activity('notes_exist').output.exists",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "name": "copy_notes",
+              "type": "Copy",
+              "policy": {
+                "timeout": "0.02:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 120
+              },
+              "description": "",
+              "dependsOn": [],
+              "inputs": [
+                {
+                  "referenceName": "ds_ftp_folder",
+                  "type": "DatasetReference",
+                  "parameters": {
+                    "folder": {
+                      "value": "@concat('bills/', pipeline().parameters.session_code, '/fiscalnotes/html/', pipeline().parameters.chamber_folder, '/', pipeline().parameters.group_folder)",
+                      "type": "Expression"
+                    }
+                  }
+                }
+              ],
+              "outputs": [
+                {
+                  "referenceName": "ds_lake_binary",
+                  "type": "DatasetReference",
+                  "parameters": {
+                    "container": "bronze",
+                    "folder": {
+                      "value": "@concat('legis/', pipeline().parameters.session_code, '/fiscalnotes/', pipeline().parameters.chamber_folder, '/', pipeline().parameters.group_folder)",
+                      "type": "Expression"
+                    },
+                    "file": ""
+                  }
+                }
+              ],
+              "typeProperties": {
+                "source": {
+                  "type": "BinarySource",
+                  "storeSettings": {
+                    "type": "FtpReadSettings",
+                    "maxConcurrentConnections": 2,
+                    "recursive": {
+                      "value": "@bool(false)",
+                      "type": "Expression"
+                    },
+                    "wildcardFileName": "*",
+                    "useBinaryTransfer": true,
+                    "disableChunking": false
+                  }
+                },
+                "sink": {
+                  "type": "BinarySink",
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings",
+                    "copyBehavior": "PreserveHierarchy"
+                  }
+                },
+                "enableStaging": false,
+                "dataIntegrationUnits": 2
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

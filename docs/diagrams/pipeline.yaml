@@ -1,0 +1,28 @@
+width: 1100
+groups:
+  - {rows: [1, 4], label: "Azure resource group · Bicep · Entra ID only"}
+rows:
+  - - {id: ftp, icon: web, title: "Texas Legislature FTP", sub: "bill histories · fiscal notes · manifest", x: 0.2}
+    - {id: soc, icon: web, title: "Comptroller spending", sub: "Texas Open Data (Socrata)", x: 0.8}
+  - - {id: kv, icon: keyvault, title: "Key Vault", sub: "API token", x: 0.0}
+    - {id: adf, icon: datafactory, title: "Data Factory", sub: "metadata-driven, incremental", x: 0.5}
+    - {id: mon, icon: loganalytics, title: "Log Analytics", sub: "failed-run alert", x: 1.0}
+  - - {id: bronze, icon: adls, title: "ADLS bronze", sub: "raw files", x: 0.2}
+    - {id: spark, icon: synapse, title: "Synapse Spark", sub: "parsers · Delta MERGE → silver → gold", x: 0.75}
+  - - {id: sv, icon: synapse, title: "Serverless SQL", sub: "lake views · CETAS", x: 0.0}
+    - {id: sql, icon: azuresql, title: "Azure SQL", sub: "star schema, SCD2", x: 0.5}
+    - {id: ai, icon: foundry, title: "Foundry gpt-4.1-mini", sub: "per-agency costs, checked", x: 1.0}
+  - - {id: pbi, icon: powerbi, title: "Power BI", sub: "6 report pages", x: 0.3}
+    - {id: agent, icon: [foundry, aisearch], title: "Foundry agent", sub: "AI Search + fixed SQL queries", x: 0.75}
+edges:
+  - [ftp, adf]
+  - [soc, adf]
+  - {from: kv, to: adf, dashed: true}
+  - {from: mon, to: adf, dashed: true}
+  - [adf, bronze]
+  - [bronze, spark]
+  - [spark, sv, "gold"]
+  - [spark, sql, "gold"]
+  - {from: spark, to: ai, label: "fiscal notes", both: true}
+  - [sql, pbi]
+  - [sql, agent]

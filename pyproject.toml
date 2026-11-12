@@ -1,0 +1,14 @@
+[project]
+name = "txfr"
+version = "0.1.0"
+description = "Texas legislative fiscal-impact pipeline (Azure data engineering practice)"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,113 @@
+{
+  "name": "pl_daily",
+  "properties": {
+    "description": "End to end: ingest (daily or weekly mode) \u2192 Synapse Spark transform (bronze \u2192 silver \u2192 gold) \u2192 load Azure SQL.",
+    "folder": {
+      "name": "orchestration"
+    },
+    "parameters": {
+      "mode": {
+        "type": "string",
+        "defaultValue": "daily"
+      },
+      "full_transform": {
+        "type": "bool",
+        "defaultValue": false
+      }
+    },
+    "activities": [
+      {
+        "name": "ingest",
+        "type": "ExecutePipeline",
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "pl_ingest",
+            "type": "PipelineReference"
+          },
+          "waitOnCompletion": true,
+          "parameters": {
+            "mode": {
+              "value": "@pipeline().parameters.mode",
+              "type": "Expression"
+            }
+          }
+        }
+      },
+      {
+        "name": "transform",
+        "type": "SynapseNotebook",
+        "dependsOn": [
+          {
+            "activity": "ingest",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 120
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_synapse",
+          "type": "LinkedServiceReference"
+        },
+        "typeProperties": {
+          "notebook": {
+            "referenceName": {
+              "value": "nb_transform",
+              "type": "Expression"
+            },
+            "type": "NotebookReference"
+          },
+          "parameters": {
+            "full": {
+              "value": {
+                "value": "@pipeline().parameters.full_transform",
+                "type": "Expression"
+              },
+              "type": "bool"
+            },
+            "maintenance": {
+              "value": {
+                "value": "@equals(pipeline().parameters.mode, 'weekly')",
+                "type": "Expression"
+              },
+              "type": "bool"
+            }
+          },
+          "sparkPool": {
+            "referenceName": {
+              "value": "${SPARK_POOL}",
+              "type": "Expression"
+            },
+            "type": "BigDataPoolReference"
+          },
+          "executorSize": "Small",
+          "driverSize": "Small",
+          "numExecutors": 1
+        }
+      },
+      {
+        "name": "load_sql",
+        "type": "ExecutePipeline",
+        "dependsOn": [
+          {
+            "activity": "transform",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "pl_load_sql",
+            "type": "PipelineReference"
+          },
+          "waitOnCompletion": true
+        }
+      }
+    ]
+  }
+}
