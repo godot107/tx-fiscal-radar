@@ -128,7 +128,7 @@ def ask_link(base: str, template: str, bill_id: str, agency: str | None = None) 
     from urllib.parse import quote
     bill, sess = bill_label(bill_id)
     q = template.format(bill=bill, session=sess, agency=(agency or "the agency").title())
-    return f"{base}/?q={quote(q)}"
+    return f"{base}/page?q={quote(q)}"   # an empty route maps to the function name: the page is /page
 
 
 # ------------------------------------------------------------------ auth + REST
@@ -311,7 +311,7 @@ def ask_button(page):
         "fill": [{"properties": {"show": on}},
                  {"properties": {"fillColor": {"solid": {"color": lit("'#0F6CBD'")}}, "transparency": lit("0D")}, "selector": d}],
         "outline": [{"properties": {"show": off}}],
-    }, link={"show": lit("true"), "type": lit("'WebUrl'"), "webUrl": lit(f"'{APP_PLACEHOLDER}/'")})
+    }, link={"show": lit("true"), "type": lit("'WebUrl'"), "webUrl": lit(f"'{APP_PLACEHOLDER}/page'")})
 
 
 def visual(page, key, vtype, x, y, w, h, buckets=None, title=None, filters=None, objects=None, z=0, sort=None, top=None,

@@ -1,7 +1,7 @@
 """Phase F: Fiscal Note Desk, the web front end for the session-analyst agent.
 
 One Azure Functions app (Flex Consumption, Python 3.12) serves both:
-    GET  /          the page (static/index.html)
+    GET  /page      the page (static/index.html); an empty route maps to the function name
     POST /api/ask   {"question": "..."} → answer, tool calls, guardrail flags, memories used, timing
     GET  /api/health
 Sign-in: App Service Authentication (Entra ID) in front of every route; unauthenticated requests get 401/redirect

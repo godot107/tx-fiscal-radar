@@ -150,7 +150,7 @@
             "webUrl": {
               "expr": {
                 "Literal": {
-                  "Value": "'{{APP_URL}}/'"
+                  "Value": "'{{APP_URL}}/page'"
                 }
               }
             }

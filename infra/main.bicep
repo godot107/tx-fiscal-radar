@@ -712,6 +712,7 @@ resource app 'Microsoft.Web/sites@2024-04-01' = if (deployApp) {
         { name: 'AzureWebJobsStorage__accountName', value: appStorage.name }
         { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights!.properties.ConnectionString }
         { name: 'PYTHON_THREADPOOL_THREAD_COUNT', value: '4' }
+        { name: 'AzureWebJobsDisableHomepage', value: 'true' }   // else Azure's placeholder page shadows the app at /
         { name: 'FOUNDRY_PROJECT_ENDPOINT', value: 'https://${foundry.name}.services.ai.azure.com/api/projects/${foundryProject.name}' }
         { name: 'OPENAI_ENDPOINT', value: 'https://${foundry.name}.openai.azure.com/' }
         { name: 'CHAT_DEPLOYMENT', value: chat.name }

@@ -26,7 +26,7 @@ Until the report is published, `docs/img/*.png` (from `tools/make_figures.py`, s
 ## Asking the agent from the report
 
 Every page has an **Ask the agent ↗** button (top right), and every bill table has an **Ask** link column next to the
-bill number. Both open Fiscal Note Desk in a new tab. The row links carry a question about that bill (`?q=...`, e.g.
+bill number. Both open Fiscal Note Desk in a new tab. The row links carry a question about that bill (`/page?q=...`, e.g.
 *"What does the latest fiscal note say SB 2206 (2025 regular session) costs, and which agencies carry it?"*). The page
 fills the question box and waits for the person to press **Ask**, so a link never spends model money by itself. If
 you aren't signed in, Entra sign-in keeps the question through the redirect.

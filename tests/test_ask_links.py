@@ -13,7 +13,7 @@ def test_bill_label():
 def test_ask_link_round_trips():
     url = powerbi.ask_link("https://example.test", powerbi.ASK_QUESTIONS["ai_review"], "892:HB16", "OFFICE OF COURT ADMINISTRATION")
     q = parse_qs(urlparse(url).query)["q"][0]
-    assert url.startswith("https://example.test/?q=")
+    assert url.startswith("https://example.test/page?q=")
     assert q == "What does the fiscal note for HB 16 (2025 second called session) say Office Of Court Administration would pay?"
     assert len(q) <= 500   # the page's textarea limit
 
