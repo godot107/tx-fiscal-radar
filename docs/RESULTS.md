@@ -56,7 +56,7 @@ Serverless SQL over the lake reports the same 1,213 (`gold.session_funnel_snapsh
   Comptroller as source agency but funds many agencies.
 - **Estimate drift:** 49 of 999 enacted bills with more than one fiscal note moved more than 25% between versions.
   SB 4 (homestead exemption) +165% ($1.04B → $2.74B), HB 500 +31%, HB 2 +10.7% ($7.57B → $8.38B), HB 9 −66%.
-- **Costs that grow after the biennium:** SB 2206 (franchise tax credit, $0 in 2026-27, $1.77B GR in FY2028-30),
+- **Costs that grow after the biennium:** SB 2206 (franchise tax credit, no new spending but $247.9M of GR revenue given up in 2026-27, then $1.77B in FY2028-30),
   SB 1490 (adult high school charter funding, $20M → $57M).
 
 ![funnel](img/funnel_89r.png)

@@ -26,7 +26,7 @@ are counted separately.
 **Estimates move.** Of the enacted bills with more than one fiscal note, 49 changed by more than a quarter between the
 first and last version. The homestead exemption increase (SB 4) went from $1.0 billion to $2.7 billion as it moved.
 
-**Some costs arrive later.** A franchise-tax credit (SB 2206) costs nothing in 2026-27 and $1.8 billion in 2028-30.
+**Some costs arrive later.** A franchise-tax credit (SB 2206) gives up about $250 million of state revenue in 2026-27, then $1.8 billion in 2028-30.
 That belongs in the next budget request, not this one.
 
 **Relative to their size**, the agencies with the most new work include the Department of Information Resources
