@@ -38,6 +38,21 @@
                       "Entity": "bill_cost"
                     }
                   },
+                  "Property": "ask"
+                }
+              },
+              "queryRef": "bill_cost.ask",
+              "nativeQueryRef": "ask",
+              "displayName": "Ask"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bill_cost"
+                    }
+                  },
                   "Property": "caption"
                 }
               },
@@ -100,6 +115,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

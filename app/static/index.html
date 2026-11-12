@@ -61,6 +61,7 @@
     <textarea id="q" maxlength="500" placeholder="e.g. Which agencies carry the largest new costs from enacted bills?" required></textarea>
     <button id="go" type="submit">Ask</button>
   </form>
+  <p id="prefill" class="cmp" hidden>Question filled in from the Power BI report. Edit it if you like, then press <strong>Ask</strong>.</p>
   <label class="cmp"><input type="checkbox" id="cmp"> Compare two answers (A/B) and vote</label>
   <label class="cmp"><input type="checkbox" id="mem"> Remember my agency and topics between visits (work context only, 30 days)</label>
   <label class="cmp"><input type="checkbox" id="imp"> Help improve the service: keep my questions and answers for 30 days</label>
@@ -196,6 +197,17 @@ async function ask(q) {
 $("f").addEventListener("submit", (e) => { e.preventDefault(); const q = $("q").value.trim(); if (q) { ask(q); $("q").value = ""; } });
 $("q").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("f").requestSubmit(); } });
 for (const x of EXAMPLES) { const c = document.createElement("button"); c.type = "button"; c.className = "chip"; c.textContent = x; c.onclick = () => ask(x); $("chips").append(c); }
+// Links from the Power BI report open the page as ?q=<question>: fill the box, don't send. A link alone never
+// spends model money; the person reads the question and presses Ask.
+try {
+  const pre = new URLSearchParams(location.search).get("q");
+  if (pre) {
+    $("q").value = pre.slice(0, 500);
+    $("q").focus();
+    $("prefill").hidden = false;
+    history.replaceState(null, "", location.pathname);   // a reload shouldn't refill it
+  }
+} catch (e) {}
 try { if (!localStorage.getItem("txfr-notice")) $("notice").hidden = false; } catch (e) { $("notice").hidden = false; }
 $("noticeOk").onclick = () => { $("notice").hidden = true; try { localStorage.setItem("txfr-notice", "1"); } catch (e) {} };
 fetch("api/health").then(r => r.json()).then(h => { if (h.user) $("user").textContent = `Signed in as ${h.user}`; }).catch(() => {});

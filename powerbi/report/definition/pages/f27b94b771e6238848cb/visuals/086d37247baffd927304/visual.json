@@ -38,6 +38,21 @@
                       "Entity": "ai_review"
                     }
                   },
+                  "Property": "ask"
+                }
+              },
+              "queryRef": "ai_review.ask",
+              "nativeQueryRef": "ask",
+              "displayName": "Ask"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ai_review"
+                    }
+                  },
                   "Property": "agency_name"
                 }
               },
@@ -137,6 +152,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

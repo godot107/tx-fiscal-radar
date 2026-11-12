@@ -38,6 +38,21 @@
                       "Entity": "watchlist"
                     }
                   },
+                  "Property": "ask"
+                }
+              },
+              "queryRef": "watchlist.ask",
+              "nativeQueryRef": "ask",
+              "displayName": "Ask"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "watchlist"
+                    }
+                  },
                   "Property": "caption"
                 }
               },
@@ -165,6 +180,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

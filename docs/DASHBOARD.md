@@ -23,6 +23,21 @@ AZURE_CONFIG_DIR=~/.azure-powerbi az login --allow-no-subscriptions --tenant <te
 Until the report is published, `docs/img/*.png` (from `tools/make_figures.py`, same views) and the executed notebook
 `notebooks/walkthrough.ipynb` show the same numbers.
 
+## Asking the agent from the report
+
+Every page has an **Ask the agent ↗** button (top right), and every bill table has an **Ask** link column next to the
+bill number. Both open Fiscal Note Desk in a new tab. The row links carry a question about that bill (`?q=...`, e.g.
+*"What does the latest fiscal note say SB 2206 (2025 regular session) costs, and which agencies carry it?"*). The page
+fills the question box and waits for the person to press **Ask**, so a link never spends model money by itself. If
+you aren't signed in, Entra sign-in keeps the question through the redirect.
+
+Why a link and not the agent inside Power BI: the app's Entra sign-in can't complete inside an iframe (web-content tile),
+the HTML Content visual can't run scripts or call APIs, and Copilot / Fabric data agents need Fabric capacity.
+
+How it's built: `read_frames` adds an `ask` column (typed `WebUrl`) to the bill tables (watchlist, bill_cost, drift,
+ai_review); the button's URL is `{{APP_URL}}` in the tracked PBIR files and is replaced with `APP_URL` only in the
+upload payload, so the app's host name never lands in git.
+
 ## Running it as an operational dashboard
 
 | Need | Development (as built) | Production |

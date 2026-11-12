@@ -38,6 +38,21 @@
                       "Entity": "drift"
                     }
                   },
+                  "Property": "ask"
+                }
+              },
+              "queryRef": "drift.ask",
+              "nativeQueryRef": "ask",
+              "displayName": "Ask"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "drift"
+                    }
+                  },
                   "Property": "status"
                 }
               },
@@ -190,6 +205,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

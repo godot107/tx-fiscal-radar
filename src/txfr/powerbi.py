@@ -96,6 +96,40 @@ COLUMN_FORMATS = {c: "$#,0" for c in ("cost_2yr", "gr_2yr_cost", "all_funds_cost
 COLUMN_FORMATS.update({c: "yyyy-mm-dd" for c in ("effective_or_signed", "filed_date", "last_action_date")})
 COLUMN_FORMATS.update({"load_pct_of_spend": "0.0", "change_pct": "0.0"})
 
+# "Ask the agent" links: each bill row gets a URL that opens Fiscal Note Desk with the question filled in (the user
+# still presses Ask: a link never spends model money by itself). Column `ask` is typed WebUrl in the dataset.
+SESSION_YEAR = {"89R": "2025 regular session", "891": "2025 first called session", "892": "2025 second called session",
+                "90R": "2027 session"}
+ASK_QUESTIONS = {
+    "watchlist": "What is {bill} ({session}) about, which agencies does it name, and does it have a fiscal note yet?",
+    "bill_cost": "What does the latest fiscal note say {bill} ({session}) costs, and which agencies carry it?",
+    "drift": "Why did the fiscal-note estimate for {bill} ({session}) change between versions?",
+    "ai_review": "What does the fiscal note for {bill} ({session}) say {agency} would pay?",
+}
+ASK_COLUMN = "ask"
+APP_PLACEHOLDER = "{{APP_URL}}"   # tracked report files carry this; the real host is substituted at upload only
+
+
+def app_url() -> str:
+    """Fiscal Note Desk base URL: APP_URL from .env locally, the Function App's own host when running in Azure."""
+    url = os.environ.get("APP_URL") or (f"https://{os.environ['WEBSITE_HOSTNAME']}" if os.environ.get("WEBSITE_HOSTNAME") else "")
+    return url.rstrip("/")
+
+
+def bill_label(bill_id: str) -> tuple[str, str]:
+    """'89R:SB2206' -> ('SB 2206', '2025 regular session')."""
+    import re
+    sess, _, bill = str(bill_id).partition(":")
+    m = re.match(r"([A-Z]+)0*(\d+)$", bill)
+    return (f"{m.group(1)} {m.group(2)}" if m else bill), SESSION_YEAR.get(sess, sess)
+
+
+def ask_link(base: str, template: str, bill_id: str, agency: str | None = None) -> str:
+    from urllib.parse import quote
+    bill, sess = bill_label(bill_id)
+    q = template.format(bill=bill, session=sess, agency=(agency or "the agency").title())
+    return f"{base}/?q={quote(q)}"
+
 
 # ------------------------------------------------------------------ auth + REST
 def token(resource: str) -> str:
@@ -150,6 +184,9 @@ def read_frames():
                 df[c] = df[c].astype(float)   # SQL decimal → float
             elif df[c].dtype == object and df[c].dropna().map(lambda v: hasattr(v, "isoformat")).all() and df[c].notna().any():
                 df[c] = pd.to_datetime(df[c])
+        if t in ASK_QUESTIONS and app_url():
+            df[ASK_COLUMN] = [ask_link(app_url(), ASK_QUESTIONS[t], b, a)
+                              for b, a in zip(df["bill_id"], df.get("agency_name", [None] * len(df)))]
         frames[t] = df
     return frames
 
@@ -165,7 +202,8 @@ def publish():
     base = f"{API}/groups/{gid}"
     frames = read_frames()
     tables = [{"name": t, "columns": [{"name": c, "dataType": pbi_type(df[c]),
-                                       **({"formatString": COLUMN_FORMATS[c]} if c in COLUMN_FORMATS else {})} for c in df.columns],
+                                       **({"formatString": COLUMN_FORMATS[c]} if c in COLUMN_FORMATS else {}),
+                                       **({"dataCategory": "WebUrl"} if c == ASK_COLUMN else {})} for c in df.columns],
                "measures": [{"name": m, "expression": e, **({"formatString": FORMATS[m]} if m in FORMATS else {})}
                             for m, e in MEASURES.get(t, {}).items()]} for t, df in frames.items()]
     existing = [d for d in s.get(f"{base}/datasets").json()["value"] if d["name"] == DATASET]
@@ -252,10 +290,32 @@ NO_TOTALS = {"total": [{"properties": {"totals": {"expr": {"Literal": {"Value": 
 
 
 def table(page, key, x, y, w, h, buckets, **kw):
-    return visual(page, key, "tableEx", x, y, w, h, buckets, objects=NO_TOTALS, **kw)
+    # WebUrl columns (the "Ask" links) show as a link icon rather than the long URL
+    objects = {**NO_TOTALS, "values": [{"properties": {"urlIcon": lit("true")}}]}
+    return visual(page, key, "tableEx", x, y, w, h, buckets, objects=objects, **kw)
 
 
-def visual(page, key, vtype, x, y, w, h, buckets=None, title=None, filters=None, objects=None, z=0, sort=None, top=None):
+def ask(t, label="Ask"):
+    return (col(t, ASK_COLUMN), label)
+
+
+def ask_button(page):
+    """Top-right button that opens Fiscal Note Desk in a new tab (URL filled in at upload, see APP_PLACEHOLDER)."""
+    d = {"id": "default"}   # buttons style per state: `show` has no selector, the styling sits on the default state
+    on, off = lit("true"), lit("false")
+    return visual(page, "ask_btn", "actionButton", 1100, 10, 160, 30, z=1000, objects={
+        "icon": [{"properties": {"show": off}}],
+        "text": [{"properties": {"show": on}},
+                 {"properties": {"text": lit("'Ask the agent ↗'"), "fontSize": lit("11D"), "bold": on,
+                                 "fontColor": {"solid": {"color": lit("'#FFFFFF'")}}}, "selector": d}],
+        "fill": [{"properties": {"show": on}},
+                 {"properties": {"fillColor": {"solid": {"color": lit("'#0F6CBD'")}}, "transparency": lit("0D")}, "selector": d}],
+        "outline": [{"properties": {"show": off}}],
+    }, link={"show": lit("true"), "type": lit("'WebUrl'"), "webUrl": lit(f"'{APP_PLACEHOLDER}/'")})
+
+
+def visual(page, key, vtype, x, y, w, h, buckets=None, title=None, filters=None, objects=None, z=0, sort=None, top=None,
+           link=None):
     v = {"visualType": vtype}
     if buckets:
         v["query"] = {"queryState": {b: {"projections": [proj(*f) if isinstance(f, tuple) else proj(f) for f in fs]}
@@ -266,6 +326,8 @@ def visual(page, key, vtype, x, y, w, h, buckets=None, title=None, filters=None,
         v["objects"] = objects
     if title:
         v["visualContainerObjects"] = {"title": [{"properties": {"show": lit("true"), "text": lit(f"'{title}'")}}]}
+    if link:
+        v.setdefault("visualContainerObjects", {})["visualLink"] = [{"properties": link}]
     v["drillFilterOtherVisuals"] = True
     out = {"$schema": f"{SCHEMA}/visualContainer/2.14.0/schema.json", "name": vid(page, key),
            "position": {"x": x, "y": y, "z": z, "width": w, "height": h, "tabOrder": z}, "visual": v}
@@ -329,7 +391,7 @@ def page_watchlist():
         slicer(p, "agency", 20, 80, 400, 90, col(w, "agency_subject"), "Agency subject"),
         card(p, "n", 440, 80, meas(w, "Watched bills")),
         table(p, "bills", 20, 185, 1240, 520,
-               {"Values": [(col(w, "bill"), "Bill"), (col(w, "caption"), "Caption"), (col(w, "filed_date"), "Filed"),
+               {"Values": [(col(w, "bill"), "Bill"), ask(w), (col(w, "caption"), "Caption"), (col(w, "filed_date"), "Filed"),
                            (col(w, "status"), "Status"), (col(w, "agency_subject"), "Agency subject"),
                            (col(w, "hearing_scheduled"), "Hearing?"), (col(w, "has_fiscal_note"), "Fiscal note?"),
                            (col(w, "last_action_date"), "Last action")]}, title="Bills (newest filing first)",
@@ -354,12 +416,12 @@ def page_exposure():
                 "Tooltips": [(agg(e, "attributed_cost_2yr"), "Total")]},
                title="New 2026-27 cost by agency", sort=(agg(e, "attributed_cost_2yr"), "Descending")),
         table(p, "largest", 590, 195, 670, 300,
-               {"Values": [(col(b, "bill_id"), "Bill"), (col(b, "caption"), "Caption"), (agg(b, "cost_2yr"), "Cost 2026-27"),
+               {"Values": [(col(b, "bill_id"), "Bill"), ask(b), (col(b, "caption"), "Caption"), (agg(b, "cost_2yr"), "Cost 2026-27"),
                            (agg(b, "fte_2027"), "FTEs"), (agg(b, "n_agencies"), "Agencies")]},
                title="Largest enacted bills", sort=(agg(b, "cost_2yr"), "Descending"),
                filters=[filt("enacted", b, "enacted", ["true"]), filt("noapp", b, "is_appropriations", ["0L"])]),
         table(p, "later", 590, 505, 670, 200,
-               {"Values": [(col(b, "bill_id"), "Bill"), (col(b, "caption"), "Caption"), (agg(b, "gr_cost_outyears"), "GR cost FY2028-30")]},
+               {"Values": [(col(b, "bill_id"), "Bill"), ask(b), (col(b, "caption"), "Caption"), (agg(b, "gr_cost_outyears"), "GR cost FY2028-30")]},
                title="Costs that grow after the biennium", sort=(agg(b, "gr_cost_outyears"), "Descending"),
                filters=[filt("enacted2", b, "enacted", ["true"]), filt("grows", b, "grows_later", ["1L"])]),
     ]
@@ -398,7 +460,7 @@ def page_drift():
                 "Y": [(agg(d, "latest_cost_2yr"), "Latest estimate")]}, title="First vs latest estimate, enacted bills (2026-27 cost)",
                filters=[filt("enacted_s", d, "status", ["'enacted'"])]),
         table(p, "table", 630, 80, 630, 625,
-               {"Values": [(col(d, "bill_id"), "Bill"), (col(d, "status"), "Status"), (col(d, "first_version"), "First"),
+               {"Values": [(col(d, "bill_id"), "Bill"), ask(d), (col(d, "status"), "Status"), (col(d, "first_version"), "First"),
                            (agg(d, "first_cost_2yr"), "First cost"), (col(d, "latest_version"), "Latest"),
                            (agg(d, "latest_cost_2yr"), "Latest cost"), (agg(d, "abs_change_2yr"), "Size of change"),
                            (agg(d, "change_pct", 1), "Change %")]},
@@ -419,7 +481,7 @@ def page_trust():
         card(p, "load", 770, 80, meas(q, "Last load (UTC)"), w=240),
         card(p, "fail", 1020, 80, meas(q, "Failed ingests 7d"), w=240),
         table(p, "queue", 20, 195, 1240, 510,
-               {"Values": [(col(r, "bill_id"), "Bill"), (col(r, "agency_name"), "Agency"), (col(r, "fiscal_year"), "FY"),
+               {"Values": [(col(r, "bill_id"), "Bill"), ask(r), (col(r, "agency_name"), "Agency"), (col(r, "fiscal_year"), "FY"),
                            (agg(r, "cost"), "Cost"), (col(r, "cost_type"), "Type"), (col(r, "reconciles"), "Adds up?"),
                            (col(r, "evidence"), "Evidence (quote from the note)")]},
                title="AI extractions waiting for review", filters=[filt("nr", r, "needs_review", ["true"])]),
@@ -447,6 +509,7 @@ def write_definition(dataset_id: str, workspace: str):
     order, n = [], 0
     for fn in PAGES:
         key, name, visuals = fn()
+        visuals = [*visuals, ask_button(key)]
         pid = vid("page", key)
         order.append(pid)
         (pdir / pid / "visuals").mkdir(parents=True)
@@ -490,8 +553,12 @@ def report(dry_run: bool):
     rep = next((r for r in s.get(f"{API}/groups/{gid}/reports").json()["value"] if r["name"] == DATASET), None)
     n_pages, n = write_definition(did, WORKSPACE)
     fab = session("https://api.fabric.microsoft.com")
+    base_url = app_url()
+    if not base_url:
+        raise SystemExit("APP_URL not set (.env): needed for the 'Ask the agent' links")
     parts = [{"path": p.relative_to(OUT).as_posix(), "payloadType": "InlineBase64",
-              "payload": base64.b64encode(p.read_bytes()).decode()} for p in sorted(OUT.rglob("*")) if p.is_file()]
+              "payload": base64.b64encode(p.read_bytes().replace(APP_PLACEHOLDER.encode(), base_url.encode())).decode()}
+             for p in sorted(OUT.rglob("*")) if p.is_file()]
     body = {"definition": {"parts": parts}}
     if rep:
         wait(fab, fab.post(f"{FABRIC}/workspaces/{gid}/reports/{rep['id']}/updateDefinition", json=body))
